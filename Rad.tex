@@ -41,7 +41,7 @@
 \chapter{Uvod}
 
 \begin{flushright}
-\textit{“We are drowning in information but starved for knowledge."} \cite{Naisbitt_1982}\\
+\textit{``We are drowning in information but starved for knowledge.''} \cite{Naisbitt_1982}\\
 -- John Naisbitt, Megatrends
 \end{flushright}
 
@@ -77,7 +77,7 @@ Prva generacija chatbotova, razvijana od sredine 1960-ih do ranih 1980-ih, ozna�
 
 \subsection{ELIZA}
 
-Rupert i ostali u svom radu detaljno obrađuju ELIZA, chatbot kojeg je Joseph Weizenbaum razvio na MIT-u sredinom 1960-ih godina. Po tom istraživanju, ELIZA predstavlja prvi chatbot na svijetu, nastao na prvom time-sharing sustavu CTSS (\textit{Compatible Time-Sharing System}) na IBM 7094 računalu. Rad opisuje kako je tim istraživača 2021. otkrio originalni ispis koda ELIZA u Weizenbaumovim arhivama na MIT-u, uključujući ranu verziju čuvenog DOCTOR skripta te gotovo potpunu verziju MAD-SLIP koda—kombinacije programskog jezika MAD i Weizenbaumovog vlastitog sustava SLIP (\textit{Symmetric Lisp Processor}). Tim je uspješno "vratio na život" originalnu ELIZA na emuliranom IBM 7094 sustavu u prosincu 2024., čime je po prvi put nakon više od 60 godina omogućeno pokretanje autentičnog originalnog koda. Bit ovog postignuća nije samo nostalgija, rekonstrukcija je omogućila provjeru što originalna ELIZA doista jest, potvrđujući kako je bila funkcionalan, iako ograničen sustav koji je pomogao pokrenuti cijelo područje konverzacijske umjetne inteligencije \cite{lane2025eliza}.
+Rupert i ostali u svom radu detaljno obrađuju ELIZA, chatbot kojeg je Joseph Weizenbaum razvio na MIT-u sredinom 1960-ih godina. Po tom istraživanju, ELIZA predstavlja prvi chatbot na svijetu, nastao na prvom time-sharing sustavu CTSS (\textit{Compatible Time-Sharing System}) na IBM 7094 računalu. Rad opisuje kako je tim istraživača 2021. otkrio originalni ispis koda ELIZA u Weizenbaumovim arhivama na MIT-u, uključujući ranu verziju čuvenog DOCTOR skripta te gotovo potpunu verziju MAD-SLIP koda --- kombinacije programskog jezika MAD i Weizenbaumovog vlastitog sustava SLIP (\textit{Symmetric Lisp Processor}). Tim je uspješno "vratio na život" originalnu ELIZA na emuliranom IBM 7094 sustavu u prosincu 2024., čime je po prvi put nakon više od 60 godina omogućeno pokretanje autentičnog originalnog koda. Bit ovog postignuća nije samo nostalgija, rekonstrukcija je omogućila provjeru što originalna ELIZA doista jest, potvrđujući kako je bila funkcionalan, iako ograničen sustav koji je pomogao pokrenuti cijelo područje konverzacijske umjetne inteligencije \cite{lane2025eliza}.
 
 Analiza restauriranog koda Ruperta i ostalih otkrila je nekoliko ključnih aspekata koji ranije nisu bili poznati. Pronađena verzija ima implementiran potpuni "\textit{teaching mode}" (način podučavanja), spominjan u Weizenbaumovom radu iz 1966. samo jednom rečenicom, ali nikada detaljno opisan. Korisnici su mogli upisivanjem naredbi poput ADD, SUBST, APPEND, i RANK mijenjati pravila razgovora i spremati nove skripte. Također, otkrivena je značajna greška: ELIZA se "srušila" kada bi primila numerički unos (npr. "\textit{you are 999 today}"), što autori tumače kao ironično doslovno shvaćanje Ada Lovelace uvida da računala mogu "djelovati na druge stvari osim brojeva". Važno je da tim nije popravio takve bugove, ostavili su kod autentičnim, točno 96\% onakav kakav je pronađen, kako bi očuvali arheološku vrijednost nalaza. Time ELIZA postaje ne samo povijesni artefakt već i upozorenje da su mnogi kasniji opisi (npr. da je ELIZA bila napisana u Lispu) bili pogrešni, originalna je bila u MAD-SLIP jeziku, a Lisp verzija nastala je kasnije kao klon Bernieja Cosella, koji se zatim proširio preko ARPANeta \cite{lane2025eliza}.
 
@@ -91,7 +91,7 @@ Radom se ističe kako je PARRY jedan od prvih chatbotova koji se evaluirao kroz 
 
 Racter (1983), kojeg su izradili Chamberlain i Etter, u tekstu se opisuje kao pionirski chatbot koji se posebno istaknuo po nasumičnom generiranju novog teksta, a ne samo biranju odgovora iz predložaka. Racter (skraćeno od \textit{raconteur}, pripovjedač) mogao je tijekom razgovora stvarati jedinstvene rečenice i prozne ulomke koristeći pravila kontekstno-slobodne gramatike (\textit{context-free grammar}) i element slučajnosti. Rad naglašava kako je rezultat često bio besmislen jer nije postojalo "pravo razumijevanje", ali da je sama proceduralna sposobnost generiranja originalnog teksta bila iznimno napredna i utjecajna za to vrijeme \cite{al2024history}.
 
-Posebno se ističe kako je autor povezan s Racterom (Chamberlain) objavio knjigu \textit{The Policeman’s Beard is Half Constructed} (1984), koja se predstavlja kao knjiga "autorski" proizvedena Racterovim generativnim mogućnostima, čime je dobio širu kulturnu vidljivost. Tekst napominje kako nije potpuno jasno u kojoj je mjeri proza doista bila u potpunosti računalno generirana, no važna je poruka da je Racter popularizirao ideju chatbotova koji mogu proizvoditi nov i originalan razgovorni sadržaj. Dodatno, rad daje primjer kako pojedini Racterovi fragmenti zvuče introspektivno i "ljudski" (npr. o snovima i željama), što je otvorilo pitanja o počovječenju i o tome kako AI može imitirati emocionalni i egzistencijalni izraz unatoč tome što nema ljudsko iskustvo \cite{al2024history}.
+Posebno se ističe kako je autor povezan s Racterom (Chamberlain) objavio knjigu \textit{The Policeman's Beard is Half Constructed} (1984), koja se predstavlja kao knjiga "autorski" proizvedena Racterovim generativnim mogućnostima, čime je dobio širu kulturnu vidljivost. Tekst napominje kako nije potpuno jasno u kojoj je mjeri proza doista bila u potpunosti računalno generirana, no važna je poruka da je Racter popularizirao ideju chatbotova koji mogu proizvoditi nov i originalan razgovorni sadržaj. Dodatno, rad daje primjer kako pojedini Racterovi fragmenti zvuče introspektivno i "ljudski" (npr. o snovima i željama), što je otvorilo pitanja o počovječenju i o tome kako AI može imitirati emocionalni i egzistencijalni izraz unatoč tome što nema ljudsko iskustvo \cite{al2024history}.
 
 \section{Druga generacija - skriptni jezici}
 
@@ -99,7 +99,7 @@ Nakon pionirskih sustava poput ELIZA, razvoj chatbotova ušao je u fazu dominaci
 
 \subsection{Chatterbot u TINYMUD okruženju}
 
-Eleni i ostali u svom radu navode kako se pojam Chatterbot prvi put spominje 1991. godine, i to kao umjetni “igrač” u TINYMUD-u (\textit{multiplayer real-time virtual world}), čija je primarna funkcija bila razgovor. Autori navode kako su mnogi stvarni (ljudski) igrači čak više voljeli razgovarati s Chatterbotom nego s drugim stvarnim igračem \cite{adamopoulou2020chatbots}.
+Eleni i ostali u svom radu navode kako se pojam Chatterbot prvi put spominje 1991. godine, i to kao umjetni ``igrač'' u TINYMUD-u (\textit{multiplayer real-time virtual world}), čija je primarna funkcija bila razgovor. Autori navode kako su mnogi stvarni (ljudski) igrači čak više voljeli razgovarati s Chatterbotom nego s drugim stvarnim igračem \cite{adamopoulou2020chatbots}.
 
 Eleni uspjeh Chatterbota u TINYMUD okruženju objašnjava kontekstom same virtualne zajednice: igrači su pretpostavljali kako su svi sugovornici ljudi pa bi sumnju izazvalo tek ako bi bot napravio veću/uočljiviju pogrešku. Drugim riječima, "prikrivenost" u okruženju gdje se očekuju ljudi smanjivala je prag za vjerovanje kako je sugovornik stvarna osoba \cite{adamopoulou2020chatbots}.
 
@@ -111,7 +111,7 @@ Ipak, iako je kasnije poboljšavan i osvojio Loebner Prize za "najhumaniji" rač
 
 Elena naglašava kako je ključna razlika između ALICE i ELIZA-e to što je ALICE razvijen uz novi jezik napravljen upravo za tu svrhu: AIML (\textit{Artificial Intelligence Markup Language}). Također navode razliku u opsegu znanja: ALICE baza znanja imala je oko 41.000 predložaka i povezanih uzoraka, što je znatno više od ELIZA (oko 200 ključnih riječi i pravila) \cite{adamopoulou2020chatbots}.
 
-Autori kažu kako je AIML nastao u razdoblju 1995–2000 za izgradnju baze znanja chatbotova koji koriste pristup slaganja uzoraka. AIML je baziran na XML-u i open-source, "topics" sadrže "categories", a svaka kategorija predstavlja pravilo s uzorkom (korisnički input) i obrascem (odgovor bota). Sve se organizira u strukturu nazvanu Graphmaster (stablo), a AIML radi uparivanje uzoraka pretragom (\textit{first depth search}) kako bi našao najbolje slaganje \cite{adamopoulou2020chatbots}.
+Autori kažu kako je AIML nastao u razdoblju 1995--2000 za izgradnju baze znanja chatbotova koji koriste pristup slaganja uzoraka. AIML je baziran na XML-u i open-source, "topics" sadrže "categories", a svaka kategorija predstavlja pravilo s uzorkom (korisnički input) i obrascem (odgovor bota). Sve se organizira u strukturu nazvanu Graphmaster (stablo), a AIML radi uparivanje uzoraka pretragom (\textit{first depth search}) kako bi našao najbolje slaganje \cite{adamopoulou2020chatbots}.
 
 \section{Treća generacija - komercijalni i praktični chatboti}
 
@@ -218,7 +218,7 @@ Ključna prednost temeljnih modela leži u njihovoj sposobnosti prilagodbe speci
 
 \subsection{Veliki jezični modeli (LLM)}
 
-Veliki jezični modeli predstavljaju specijalizaciju temeljnih modela unutar domene prirodnog jezika, karakterizirani milijardama parametara i treniranjem na korpusima teksta koji obuhvaćaju značajan dio ljudskog znanja. Za razliku od tradicionalnih modela za obradu jezika, LLM-ovi pokazuju takozvana "izranjajuća" (emergentna) svojstva – sposobnosti poput rješavanja logičkih problema ili učenja iz konteksta koje se pojavljuju tek pri dosezanju određene kritične mase parametara i podataka. Evolucija ovih modela dovela je do pomaka s jednostavnog predviđanja sljedećeg tokena prema sustavima koji su usklađeni s ljudskim namjerama putem metoda poravnanja, čime postaju sposobni za kompleksnu interakciju i izvršavanje složenih korisničkih uputa \cite{zhou2025comprehensive} \cite{naveed2025comprehensive}.
+Veliki jezični modeli predstavljaju specijalizaciju temeljnih modela unutar domene prirodnog jezika, karakterizirani milijardama parametara i treniranjem na korpusima teksta koji obuhvaćaju značajan dio ljudskog znanja. Za razliku od tradicionalnih modela za obradu jezika, LLM-ovi pokazuju takozvana "izranjajuća" (emergentna) svojstva -- sposobnosti poput rješavanja logičkih problema ili učenja iz konteksta koje se pojavljuju tek pri dosezanju određene kritične mase parametara i podataka. Evolucija ovih modela dovela je do pomaka s jednostavnog predviđanja sljedećeg tokena prema sustavima koji su usklađeni s ljudskim namjerama putem metoda poravnanja, čime postaju sposobni za kompleksnu interakciju i izvršavanje složenih korisničkih uputa \cite{zhou2025comprehensive} \cite{naveed2025comprehensive}.
 
 Arhitektonski temelj LLM-ova čini Transformer arhitektura, čija skalabilnost i paralelizacija omogućuju obradu ogromnih količina informacija uz korištenje naprednih varijanti mehanizama pažnje. Kako bi se prevladali visoki računalni troškovi treniranja i inferencije, istraživački fokus se sve više usmjerava prema optimizaciji arhitekture, uključujući efikasnije metode pozicijskog kodiranja i tehnike kompresije modela poput kvantizacije i "obrezivanja". Ovi tehnički napredci omogućuju širu dostupnost LLM-ova, pretvarajući ih iz isključivo istraživačkih artefakata u praktične komponente koje se mogu integrirati u različite softverske arhitekture uz zadržavanje visoke razine preciznosti \cite{zhou2025comprehensive}.
 
@@ -358,7 +358,7 @@ U suvremenim primjenama, LLM-ovi se rijetko koriste kao izolirani sustavi. Umjes
   \item Benchmarkovi služe za usporedbu modela na standardiziranim zadacima (npr. razumijevanje teksta, matematika, kodiranje).
   \item Primjeri metrika:
   \begin{itemize}
-    \item \textbf{Perplexity} (mjera “iznenađenja" modela nad tekstom),
+    \item \textbf{Perplexity} (mjera ``iznenađenja" modela nad tekstom),
     \item \textbf{BLEU} (podudaranje s referencom, česta u prijevodu),
     \item \textbf{ROUGE} (naglasak na \emph{recall}, česta u sažimanju).
   \end{itemize}
