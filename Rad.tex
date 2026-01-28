@@ -1,0 +1,391 @@
+\documentclass[]{foi} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[croatian]{babel}
+\DeclareUnicodeCharacter{2011}{-}
+\usepackage{lipsum}
+\usepackage{float}
+
+\vrstaRada{\diplomski}
+
+\title{Izrada agenta s generativnom umjetnom inteligencijom teksta specifične namjene}
+\predmet{}
+
+\author{Zlatko Pračić} 
+\spolStudenta{\musko} 
+
+\mentor{Markus Schatten}
+\spolMentora{\musko} 
+\titulaProfesora{Prof. dr. sc.}
+
+\godina{2026}
+\mjesec{kolovoz}
+
+\indeks{0016145097}
+
+\smjer{Baze podataka i baze znanja}
+
+\sazetak{Opsega od 100 do 300 riječi. Sažetak upućuje na temu rada, ukratko se iznosi čime se rad bavi, teorijsko-metodološka polazišta, glavne teze i smjer rada te zaključci.}
+
+\kljucneRijeci{riječ; riječ; ...riječ; Obuhvaća $7\pm2$ ključna pojma koji su glavni predmet rasprave u radu.}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\makeatletter \def\@dotsep{4.5} \makeatother
+\pagestyle{plain}
+
+\chapter{Uvod}
+
+\begin{flushright}
+\textit{“We are drowning in information but starved for knowledge."} \cite{Naisbitt_1982}\\
+-- John Naisbitt, Megatrends
+\end{flushright}
+
+\chapter{Povijest Chatbotova}
+
+Popularnost chatbotova naglo je porasla predstavljanjem ChatGPT-a 2022. godine. Iz te se činjenice može zaključiti kako su chatbotovi postojali i prije ove nagle popularizacije. Stoga će se u ovom poglavlju prikazati povijesni razvoj chatbota, kao i teorijska osnova koja je utjecala na razvoj ideje o stroju koji razgovara.
+
+\section{Teorijske i matematičke pretpostavke}
+
+Iako je Andrey Markov uvođenjem Markovljevih lanaca u svom radu postavio važan temelj, ideja njegovog rada nije bila ni približna konceptu "stroja koji razgovara". Unatoč tome, vrijednost modela Markovljevog lanca za kasnija otkrića i razvoj znanstvene misli je neupitna.
+
+S druge strane, Alan Turing promišlja o budućnosti strojeva čije su se sposobnosti ubrzano razvijale i postajale sve složenije. Zanimalo ga je može li stroj tijekom komunikacije uvjeriti ispitivača da nije stroj, što se u nastavku teksta formalizira u obliku Turingova testa. Iako se u tom kontekstu izravno ne spominju chatbotovi, upravo se na njih ovaj test u velikoj mjeri može primijeniti.
+
+\subsection{Markovljev lanac}
+
+Al-Amin i ostali u svom radu predstavljaju Markovljev lanac kao jednu od najranijih metoda koja je pokazala potencijal chatbota kroz generiranje teksta na temelju statističkih vjerojatnosti slijeda riječi. Markovljev lanac je razvio Andrey Markov 1906. godine za modeliranje stohastičkih procesa, a kasnije se počeo koristiti u zadacima poput predviđanja sljedeće riječi (npr. autocomplete u e-pošti). U chatbot kontekstu, Markovljev lanac procjenjuje vjerojatnost da određena riječ slijedi drugu i na temelju unaprijed naučenih prijelaznih vjerojatnosti "slaže" odgovor. Kao rana primjena navodi se HeX, koji je osvojio Loebnerovu nagradu 1997., nakon čega je interes za ovu tehniku postupno rastao \cite{al2024history}.
+
+Klasični Markovljevi modeli opisuju prelazak sustava između različitih stanja kroz vrijeme, pri čemu se prijelazne vjerojatnosti procjenjuju iz empirijskih podataka i pretpostavlja se da su stabilne kroz susjedne vremenske intervale. Prostorni Markovljevi modeli proširuju tu ideju na prostorne jedinice (npr. namjene zemljišta) te uključuju prostornu ovisnost između susjednih lokacija, a dodatna proširenja omogućila su i višedimenzionalne simulacije \cite{al2024history}.
+
+Iako su Markovljevi lanci jednostavni za implementaciju i mogu proizvesti dobre rezultate, previše su ograničeni za uvjerljive i koherentne razgovore. Kod predviđanja teksta obično "pamte" samo jednu ili nekoliko prethodnih riječi, pa bez šireg konteksta teško hvataju značenje i dugoročnu strukturu rečenica. Unatoč tome, bili su važan rani korak i dokaz koncepta za probabilističke/generativne pristupe te su svojim idejama utjecali na kasniji razvoj modernih razgovornih AI sustava \cite{al2024history}.
+
+\subsection{Turingov test}
+
+Alan Turing svojim radom tvrdi kako je pitanje "Mogu li strojevi misliti?" nejasno pa ga zamjenjuje praktičnijim kriterijem: imitacijskom igrom (u nastavku kaže kako je to "test"), gdje ispitivač preko pisanih poruka pokušava razlikovati čovjeka od stroja. Fokusira se na digitalna računala, objašnjava njihovu građu (memorija, izvršna jedinica, kontrola/program) i naglašava njihovu univerzalnost. Jedno dovoljno snažno računalo može oponašati ponašanje bilo kojeg stroja s diskretnim stanjima ako je dobro programirano. Predviđa kako bi se u nekoliko desetljeća mogla pojaviti računala koja bi u takvoj igri bila dovoljno uvjerljiva u "razgovoru" s prosječnim ispitivačem \cite{turing1998quarterly}.
+
+Velik dio rada posvećen je odgovorima na prigovore kako strojevi ne mogu misliti: teološke tvrdnje o "duši", strah od posljedica, matematička ograničenja, argument iz svijesti i razne "nemogućnosti" tipa da stroj ne može biti kreativan, griješiti ili učiti. Turing uglavnom pokazuje da ti prigovori ne dokazuju nemogućnost, često miješaju kvarove s pogrešnim zaključivanjem ili se oslanjaju na tadašnja ograničenja tehnologije. Kao pozitivni smjer predlaže da se ne programira "odrasli um" direktno, nego da se napravi "dječji stroj" koji se zatim uči i odgaja (nagrade/kazne, jezik naredbi, moguće i slučajnost), analogno procesu učenja i evolucije \cite{turing1998quarterly}.
+
+Al-Amin kaže kako se Turingov test može smatrati modelskom pretečom chatbota jer je već 1950. postavio razgovor u prirodnom jeziku kao ključni način provjere "inteligentnog" ponašanja mašine, kroz dijalog u kojem treba biti teško razlikovati mašinu od čovjeka. U tekstu se naglašava kako se evaluacija zasniva na tome može li računalo "prevariti" ljudskog ispitivača da pomisli kako razgovara s čovjekom, što je isti osnovni cilj konverzacijskih sistema poput chatbota. Također, kao utjecajan istraživački kamen temeljac, Turingov test je godinama i desetljećima motivirao razvoj obrade prirodnog jezika, čime je direktno usmjerio put prema modernim chatbot tehnologijama \cite{al2024history}.
+
+\section{Prva generacija - tekstualni chatbotovi bazirani na pravilima}
+
+Prva generacija chatbotova, razvijana od sredine 1960-ih do ranih 1980-ih, označava prijelaz s teorijskih koncepata na prve praktične implementacije sustava koji simuliraju ljudski razgovor. Ovi rani programi temeljili su se na paradigmi prepoznavanja uzoraka (engl. \textit{pattern matching}) i primjeni strogo definiranih, ručno pisanih pravila, bez stvarnog razumijevanja semantike ili konteksta. Oslanjajući se na identifikaciju ključnih riječi i njihovu transformaciju u unaprijed pripremljene odgovore, ovi su sustavi po prvi put demonstrirali mogućnost održavanja prividno koherentnog dijaloga unutar usko definiranih domena, čime su postavili temelje za razvoj interakcije čovjeka i računala te otkrili snažnu ljudsku sklonost počovječenih strojeva.
+
+\subsection{ELIZA}
+
+Rupert i ostali u svom radu detaljno obrađuju ELIZA, chatbot kojeg je Joseph Weizenbaum razvio na MIT-u sredinom 1960-ih godina. Po tom istraživanju, ELIZA predstavlja prvi chatbot na svijetu, nastao na prvom time-sharing sustavu CTSS (\textit{Compatible Time-Sharing System}) na IBM 7094 računalu. Rad opisuje kako je tim istraživača 2021. otkrio originalni ispis koda ELIZA u Weizenbaumovim arhivama na MIT-u, uključujući ranu verziju čuvenog DOCTOR skripta te gotovo potpunu verziju MAD-SLIP koda—kombinacije programskog jezika MAD i Weizenbaumovog vlastitog sustava SLIP (\textit{Symmetric Lisp Processor}). Tim je uspješno "vratio na život" originalnu ELIZA na emuliranom IBM 7094 sustavu u prosincu 2024., čime je po prvi put nakon više od 60 godina omogućeno pokretanje autentičnog originalnog koda. Bit ovog postignuća nije samo nostalgija, rekonstrukcija je omogućila provjeru što originalna ELIZA doista jest, potvrđujući kako je bila funkcionalan, iako ograničen sustav koji je pomogao pokrenuti cijelo područje konverzacijske umjetne inteligencije \cite{lane2025eliza}.
+
+Analiza restauriranog koda Ruperta i ostalih otkrila je nekoliko ključnih aspekata koji ranije nisu bili poznati. Pronađena verzija ima implementiran potpuni "\textit{teaching mode}" (način podučavanja), spominjan u Weizenbaumovom radu iz 1966. samo jednom rečenicom, ali nikada detaljno opisan. Korisnici su mogli upisivanjem naredbi poput ADD, SUBST, APPEND, i RANK mijenjati pravila razgovora i spremati nove skripte. Također, otkrivena je značajna greška: ELIZA se "srušila" kada bi primila numerički unos (npr. "\textit{you are 999 today}"), što autori tumače kao ironično doslovno shvaćanje Ada Lovelace uvida da računala mogu "djelovati na druge stvari osim brojeva". Važno je da tim nije popravio takve bugove, ostavili su kod autentičnim, točno 96\% onakav kakav je pronađen, kako bi očuvali arheološku vrijednost nalaza. Time ELIZA postaje ne samo povijesni artefakt već i upozorenje da su mnogi kasniji opisi (npr. da je ELIZA bila napisana u Lispu) bili pogrešni, originalna je bila u MAD-SLIP jeziku, a Lisp verzija nastala je kasnije kao klon Bernieja Cosella, koji se zatim proširio preko ARPANeta \cite{lane2025eliza}.
+
+\subsection{PARRY}
+
+Al-Amin u svom radu obrađuju PARRY chatbot koji je 1972. razvio psihijatar Kenneth Colby na Stanfordu i predstavlja suprotnost ELIZI. Umjesto da glumi terapeuta, PARRY glumi paranoidnog shizofrenog pacijenta kako bi odvukao pažnju sa sebe i potaknuo korisnika na dugačke, razrađene odgovore. U tekstu se naglašava kako je PARRY služio i kao alat za obuku psihijatara (vježbanje razgovora s pacijentima), ali i kao operativni model Colbyjeve teorije paranoje, tj. demonstracija kako "poremećena interpretacija znakova" može proizvoditi prepoznatljive obrasce paranoidnog govora i ponašanja \cite{al2024history}.
+
+Radom se ističe kako je PARRY jedan od prvih chatbotova koji se evaluirao kroz oblik "Turing testa" (imitacijska igra) radi procjene koliko uvjerljivo može oponašati ljudski razgovor. Ta linija evaluacije kasnije se nastavlja kroz natjecanja poput Loebner Prizea, gdje se botovi ocjenjuju po "prirodnosti" nakon kratkih razgovora. Poanta u tekstu je da su PARRY (i kasnije Loebner Prize) dio ranih pokušaja mjerenja konverzacijske "inteligencije" chatbotova prema tome koliko dobro simuliraju prirodan ljudski dijalog \cite{al2024history}.
+
+\subsection{Racter}
+
+Racter (1983), kojeg su izradili Chamberlain i Etter, u tekstu se opisuje kao pionirski chatbot koji se posebno istaknuo po nasumičnom generiranju novog teksta, a ne samo biranju odgovora iz predložaka. Racter (skraćeno od \textit{raconteur}, pripovjedač) mogao je tijekom razgovora stvarati jedinstvene rečenice i prozne ulomke koristeći pravila kontekstno-slobodne gramatike (\textit{context-free grammar}) i element slučajnosti. Rad naglašava kako je rezultat često bio besmislen jer nije postojalo "pravo razumijevanje", ali da je sama proceduralna sposobnost generiranja originalnog teksta bila iznimno napredna i utjecajna za to vrijeme \cite{al2024history}.
+
+Posebno se ističe kako je autor povezan s Racterom (Chamberlain) objavio knjigu \textit{The Policeman’s Beard is Half Constructed} (1984), koja se predstavlja kao knjiga "autorski" proizvedena Racterovim generativnim mogućnostima, čime je dobio širu kulturnu vidljivost. Tekst napominje kako nije potpuno jasno u kojoj je mjeri proza doista bila u potpunosti računalno generirana, no važna je poruka da je Racter popularizirao ideju chatbotova koji mogu proizvoditi nov i originalan razgovorni sadržaj. Dodatno, rad daje primjer kako pojedini Racterovi fragmenti zvuče introspektivno i "ljudski" (npr. o snovima i željama), što je otvorilo pitanja o počovječenju i o tome kako AI može imitirati emocionalni i egzistencijalni izraz unatoč tome što nema ljudsko iskustvo \cite{al2024history}.
+
+\section{Druga generacija - skriptni jezici}
+
+Nakon pionirskih sustava poput ELIZA, razvoj chatbotova ušao je u fazu dominacije skriptnih jezika i naprednog uparivanja uzoraka, što se može smatrati njihovom drugom generacijom. Umjesto jednostavnih pravila, ovi sustavi koriste strukturirane jezike poput AIML-a, RiveScripta i ChatScripta za izgradnju opsežnih baza znanja koje omogućuju chatbotovima da simuliraju kontekstualnu svjesnost i upravljaju tisućama varijacija korisničkih upita. Iako se ovi jezici i dalje oslanjaju na unaprijed definirane predloške umjesto na stvarno strojno učenje, oni su omogućili chatbotovima da postignu visoku razinu interaktivnosti i postanu prvi široko dostupni digitalni sugovornici na internetu \cite{adamopoulou2020chatbots}.
+
+\subsection{Chatterbot u TINYMUD okruženju}
+
+Eleni i ostali u svom radu navode kako se pojam Chatterbot prvi put spominje 1991. godine, i to kao umjetni “igrač” u TINYMUD-u (\textit{multiplayer real-time virtual world}), čija je primarna funkcija bila razgovor. Autori navode kako su mnogi stvarni (ljudski) igrači čak više voljeli razgovarati s Chatterbotom nego s drugim stvarnim igračem \cite{adamopoulou2020chatbots}.
+
+Eleni uspjeh Chatterbota u TINYMUD okruženju objašnjava kontekstom same virtualne zajednice: igrači su pretpostavljali kako su svi sugovornici ljudi pa bi sumnju izazvalo tek ako bi bot napravio veću/uočljiviju pogrešku. Drugim riječima, "prikrivenost" u okruženju gdje se očekuju ljudi smanjivala je prag za vjerovanje kako je sugovornik stvarna osoba \cite{adamopoulou2020chatbots}.
+
+\subsection{ALICE i AIML}
+
+Eleni kao sljedeći veći korak u povijesti chatbotova navodi ALICE (\textit{Artificial Linguistic Internet Computer Entity}), nastao 1995. kao prvi online chatbot inspiriran ELIZA. ALICE je bio temeljen na slaganju uzoraka, bez stvarnog razumijevanja cjelokupnog razgovora, ali s mogućnošću vođenja dugih razgovora na webu i pokrivanja praktički bilo koje teme \cite{adamopoulou2020chatbots}.
+
+Ipak, iako je kasnije poboljšavan i osvojio Loebner Prize za "najhumaniji" računalni program, autori ističu ograničenja: ALICE nije imao "inteligentne" značajke u smislu generiranja ljudski sličnih odgovora koji izražavaju emocije ili stavove. Dakle, unatoč velikoj bazi pravila i odgovora, nije bio emocionalno ni kognitivno "pametan" u modernom smislu \cite{adamopoulou2020chatbots}.
+
+Elena naglašava kako je ključna razlika između ALICE i ELIZA-e to što je ALICE razvijen uz novi jezik napravljen upravo za tu svrhu: AIML (\textit{Artificial Intelligence Markup Language}). Također navode razliku u opsegu znanja: ALICE baza znanja imala je oko 41.000 predložaka i povezanih uzoraka, što je znatno više od ELIZA (oko 200 ključnih riječi i pravila) \cite{adamopoulou2020chatbots}.
+
+Autori kažu kako je AIML nastao u razdoblju 1995–2000 za izgradnju baze znanja chatbotova koji koriste pristup slaganja uzoraka. AIML je baziran na XML-u i open-source, "topics" sadrže "categories", a svaka kategorija predstavlja pravilo s uzorkom (korisnički input) i obrascem (odgovor bota). Sve se organizira u strukturu nazvanu Graphmaster (stablo), a AIML radi uparivanje uzoraka pretragom (\textit{first depth search}) kako bi našao najbolje slaganje \cite{adamopoulou2020chatbots}.
+
+\section{Treća generacija - komercijalni i praktični chatboti}
+
+Razvoj chatbotova prošao je put od ranih eksperimentalnih sustava do sofisticiranih asistenata koji su danas duboko integrirani u digitalni ekosustav. Ključni trenutak u toj evoluciji bio je prijelaz s izoliranih programa na masovne komunikacijske platforme, čime su chatbotovi postali dostupni širokom krugu korisnika u stvarnom vremenu. Kroz primjere poput pionirskog SmarterChilda i suvremenih rješenja na platformama kao što su Facebook Messenger, WhatsApp i WeChat, može se pratiti kako su ovi sustavi transformirali način na koji se dobijaju informacije, komunicira s brendovima i koriste društvene mreže \cite{al2024history} \cite{adamopoulou2020chatbots}.
+
+\subsection{SmarterChild}
+
+SmarterChild je chatbot koji je razvila tvrtka ActiveBuddy 2001. godine i smatra se jednim od ranih pionira koji je chatbotove približio širokoj publici. Al-Amin u svom radu navodi kako je chatbot radio unutar instant messaging platformi i mogao je davati informacije o raznim temama na upit, što je pokazalo kako chatbot može funkcionirati kao svojevrsni "virtualni asistent" koji pronalazi činjenice i odgovara na korisnička pitanja \cite{al2024history}.
+
+Al-Amin ističe kako je posebno važno da se SmarterChild mogao dodati u MSN Messenger i AOL Instant Messenger te je na vrhuncu dosegao više od 30 milijuna korisnika. Time je "pionirski" otvorio put chatbotovima u mrežama za dopisivanje i kasnijim asistentima poput Appleova Siri-ja i Samsungova S Voice-a, jer je demonstrirao potencijal pružanja usluga kroz razgovorno sučelje direktno u okruženju poruka. Također je pokazao praktičnu vrijednost (npr. dohvat vijesti, vremena i burzovnih podataka iz baza) pa je pristup informacijama kroz razgovor umjesto kroz web-stranice označen kao važan korak prema AI sustavima koji služe ljudima putem dijaloga \cite{al2024history}.
+
+\subsection{Web i društvene mreže}
+
+Chatbotovi na društvenim mrežama naglo su se proširili paralelno s rastom interneta i društvenih platformi, gdje mogu imati različite uloge: korisničku podršku, marketing i oglašavanje, zabavu te prikupljanje podataka. U radu Al-Amina se također naglašava kako se mogu koristiti i kao instrumenti "hibridnih prijetnji" s ciljem utjecaja na javno mnijenje, što pokazuje koliko su njihove primjene višestruke i društveno značajne \cite{al2024history}.
+
+U praksi se chatbotovi često integriraju izravno u brandove profile na društvenim mrežama kako bi pružali trenutnu podršku, automatski generirali sadržaj (npr. opise i hashtagove), omogućili personaliziran "razgovorni" kontakt s publikom, radili analizu sentimenta i prikupljali te organizirali podatke o korisnicima i trendovima. Kao primjer integracije na velikim platformama navodi se Meta, koja uvodi AI značajke te testira "Meta AI" asistenta dostupnog na WhatsAppu, Messengeru i Instagramu, uz naglasak na postupno uvođenje i zaštitne mehanizme \cite{al2024history}.
+
+\section{Četvrta generacija - glasovni asistenti i konverzacijska sučelja}
+
+Četvrta generacija razvoja umjetne inteligencije u domeni komunikacije označava prijelaz s tekstualnih chatbotova na inteligentne glasovne asistente integrirane u svakodnevne uređaje. Ova faza, koja je započela početkom 2010-ih, donijela je revoluciju u interakciji čovjeka i računala omogućivši prirodan razgovor, prepoznavanje konteksta i upravljanje pametnim domovima. Za razliku od svojih prethodnika koji su se oslanjali na stroga pravila, moderni asistenti koriste duboko učenje i masovne baze podataka kako bi predvidjeli potrebe korisnika i pružili personalizirano iskustvo u stvarnom vremenu \cite{al2024history} \cite{adamopoulou2020chatbots}.
+
+\subsection{Siri, Google Assistant, Cortana, Alexa}
+
+Pojava Siri na iPhoneu 4S 2011. godine postavila je temelje za komercijalnu upotrebu glasovnih asistenata, proizašavši iz ambicioznog vojnog projekta CALO koji je težio stvaranju kognitivnog agenta sposobnog za učenje. Siri je uvela koncept personaliziranog digitalnog pomoćnika koji ne samo da odgovara na pitanja, već i izvršava zadatke poput postavljanja podsjetnika ili slanja poruka, prilagođavajući se s vremenom jeziku i preferencijama korisnika. Iako je pionir, njezina ovisnost o internetskoj vezi i ograničena podrška za manje jezike ostali su izazovi u ranoj fazi razvoja \cite{al2024history} \cite{adamopoulou2020chatbots}.
+
+Ubrzo nakon Applea, Google je 2012. predstavio Google Now (kasnije Google Assistant), fokusirajući se na prediktivno pružanje informacija temeljem lokacije i povijesti pretraživanja, dok su Microsoft i Amazon 2014. godine ušli na tržište s Cortanom i Alexom. Dok je Cortana bila usmjerena na produktivnost unutar Windows ekosustava, Alexa je redefinirala koncept pametnog doma kroz Echo uređaje, omogućivši programerima stvaranje novih vještina putem Alexa Skills Kita \cite{al2024history} \cite{adamopoulou2020chatbots}.
+
+\subsection{Opća arhitektura modernog asistenta - Siri}
+
+"Hey Siri" je on-device glasovni okidač koji koristi duboku neuronsku mrežu (DNN) za stalno osluškivanje aktivacijske fraze uz minimalnu potrošnju baterije. Sustav na iPhoneu radi u dvije faze: mali DNN na štedljivom koprocesoru (AOP) vrši početnu detekciju, a tek nakon toga glavni procesor s većim modelom potvrđuje upit. Cijeli proces prepoznavanja temelji se na analizi kratkih audio-okvira od 0,2 sekunde i vremenskoj integraciji rezultata kako bi se izračunala pouzdanost okidanja \cite{appleML}.
+
+Nakon lokalne aktivacije, sustav provjerava identitet korisnika usporedbom s glasovnim profilom spremljenim na uređaju. Iako je sam detektor okidača u potpunosti lokalan radi privatnosti i brzine, većina daljnje obrade (glavno prepoznavanje govora i tumačenje upita) odvija se u oblaku. Ako Siri server utvrdi da početak govora ipak nije bio ispravan okidač, šalje signal uređaju da se vrati u stanje mirovanja \cite{appleML}.
+
+\section{Peta generacija - duboko učenje, transformeri i LLM chatbotovi}
+
+Peta generacija razvoja umjetne inteligencije i chatbot sustava označava prijelaz s krutih pravila na sustave koji uče iz golemih količina podataka, omogućujući prirodniju i kontekstualno svjesniju interakciju. Dok su raniji sustavi poput ELIZA-e koristili jednostavno prepoznavanje uzoraka, moderni pristupi temelje se na dubokom učenju i neuronskim mrežama koje simuliraju ljudske kognitivne procese. Ova evolucija omogućila je chatbotima da postanu ne samo digitalni asistenti za izvršavanje zadataka, već i empatični sugovornici sposobni za složenu komunikaciju \cite{adamopoulou2020chatbots}.
+
+\subsection{Sekvencijski modeli}
+
+Sekvencijski modeli, poput rekurentnih neuronskih mreža (RNN) i mreža s dugom kratkoročnom memorijom (LSTM), predstavljali su ključni korak u omogućavanju chatbotima da zadrže kontekst razgovora. Za razliku od tradicionalnih mreža, ovi modeli koriste petlje koje omogućuju informacijama da perzistiraju, što je neophodno za razumijevanje rečenica u kojima značenje ovisi o prethodno izgovorenim riječima \cite{adamopoulou2020chatbots}.
+
+Međutim, unatoč njihovoj sposobnosti obrade sekvenci, ovi modeli često nailaze na poteškoće pri učenju dugoročnih ovisnosti u vrlo dugim tekstovima. Iako su LSTM i GRU (Gated Recurrent Units) značajno poboljšali preciznost u sustavima za odgovaranje na često postavljana pitanja (FAQ), njihova arhitektura i dalje zahtijeva sekvencijalnu obradu podataka, što ograničava brzinu treniranja na velikim skupovima podataka \cite{adamopoulou2020chatbots}.
+
+\subsection{Transformer arhitektura}
+
+Transformer arhitektura donijela je revoluciju u obradi prirodnog jezika uvođenjem mehanizma "pažnje" (attention mechanism), koji omogućuje modelu da istovremeno promatra sve dijelove ulazne sekvence. Za razliku od prethodnih sekvencijskih modela, transformeri mogu paralelno obrađivati podatke, što drastično ubrzava proces treniranja i omogućuje rad s neusporedivo većim korpusima teksta \cite{toosi2021brief}.
+
+Ova arhitektura omogućuje modelu da dinamički dodjeljuje važnost različitim riječima u rečenici, bez obzira na njihovu međusobnu udaljenost, čime se postiže dublje razumijevanje semantike i konteksta. Upravo je ovaj tehnološki skok postavio temelje za razvoj suvremenih velikih jezičnih modela koji dominiraju današnjim tržištem umjetne inteligencije \cite{toosi2021brief}.
+
+Na Slici \ref{fig:AI_history} se može vidjeti vremenski slijed pojavljivanja pojedinih chatbotova. Neki od njih nisu spomenuti u ovom radu pošto se u opisu povijesti chatbotova biralo najznačajnije zastupnike.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{slike/Screenshot_20260109_131334.png}
+    \caption{Vremenska linija chatbota \cite{stoyanovachatbots}}
+    \label{fig:AI_history}
+\end{figure}
+
+\subsection{Veliki jezični modeli i generativni chatboti (ChatGPT, Bard ...)}
+
+Veliki jezični modeli (LLM) predstavljaju vrhunac generativne umjetne inteligencije, koristeći milijarde parametara za predviđanje i generiranje teksta koji je često nerazlučiv od ljudskog. Sustavi poput ChatGPT-a ili Barda (sada Gemini) ne oslanjaju se na unaprijed definirane odgovore, već sintetiziraju nove rečenice u stvarnom vremenu, prilagođavajući se tonu i specifičnim zahtjevima korisnika kroz višestruke krugove dijaloga \cite{toosi2021brief}.
+
+Iako ovi modeli pokazuju impresivne sposobnosti u rješavanju problema, kreativnom pisanju i programiranju, oni se i dalje suočavaju s izazovima poput "halucinacija" ili generiranja netočnih informacija. Unatoč tome, njihova integracija u svakodnevne alate i sposobnost učenja iz povratnih informacija korisnika čine ih najnaprednijim oblikom interakcije čovjeka i stroja do danas \cite{toosi2021brief}.
+
+
+\chapter{AI inženjerstvo - koncepti i ključne tehnike}
+
+Budući da se u ovom radu razmatra razvoj chatbota specifične namjene, pri čemu se njegova funkcionalnost temelji na postojećim velikim jezičnim modelima, može se zaključiti da je u svrhu izrade rješenja primijenjen pristup AI inženjerstva. Iz tog razloga, u ovom će se poglavlju detaljnije pojasniti sam pojam AI inženjerstva, kao i njegov položaj u kontekstu izgradnje i prilagodbe sustava temeljenih na velikim jezičnim modelima. Također će se obraditi i ostali ključni pojmovi i koncepti nužni za razumijevanje ovog područja, s posebnim naglaskom na one koji su relevantni za praktičnu izradu, konfiguraciju i evaluaciju chatbota namijenjenog određenoj domeni ili zadatku.
+
+Ujedno, cilj poglavlja je pružiti teorijsku podlogu i jasnu terminološku osnovu za naredne dijelove rada, kako bi se korištene metode, tehnologije i dizajnerske odluke mogle razumjeti u širem okviru suvremenog razvoja AI rješenja. Na taj način se omogućuje lakše praćenje procesa izrade sustava, od odabira modela i načina integracije, preko prilagodbe ponašanja i ograničenja chatbota, do provjere njegove učinkovitosti u stvarnim uvjetima uporabe.
+
+\section{Pojam i uloga AI inženjerstva}
+
+AI inženjerstvo je specijalizirano područje u kojem stručnjaci koriste umjetnu inteligenciju i strojno učenje za razvoj aplikacija i sustava koji organizacijama pomažu povećati učinkovitost, smanjiti troškove i donositi bolje poslovne odluke. AI inženjeri razvijaju alate, sustave i procese koji omogućuju primjenu umjetne inteligencije u stvarnom svijetu \cite{courseraWhatEngineer}.
+
+Ključne odgovornosti AI inženjera:
+\begin{itemize}
+    \item Stvaranje i upravljanje AI infrastrukturom za razvoj i produkciju
+    \item Provođenje statističkih analiza za optimizaciju odlučivanja
+    \item Automatizacija AI infrastrukture
+    \item Izgradnja AI modela od nule
+    \item Transformacija modela strojnog učenja u API-je koji se mogu integrirati s drugim aplikacijama \cite{YouTubeMarina}
+\end{itemize}
+
+Potrebne vještine:
+\begin{itemize}
+    \item Programiranje (Python, R, Java, C++)
+    \item Statistika i linearna algebra
+    \item Big data tehnologije (Apache Spark, Hadoop, MongoDB)
+    \item Algoritmi strojnog učenja i duboko učenje
+    \item AI frameworks (TensorFlow, PyTorch, Keras) \cite{courseraWhatEngineer}
+\end{itemize}
+
+\section{Temeljni modeli i veliki jezični modeli (LLM)}
+
+Današnji razvoj umjetne inteligencije više se ne vrti oko izrade malih, specijaliziranih programa za samo jedan zadatak. Umjesto toga, sve se temelji na moćnim, unaprijed obučenim sustavima koji služe kao univerzalna baza za sve ostalo. U središtu te promjene su temeljni modeli, a unutar njih svima poznati veliki jezični modeli (LLM). Dok su temeljni modeli širi pojam i mogu raditi sa slikama ili zvukom, LLM-ovi su tu tehnologiju doveli do savršenstva u radu s tekstom. Oni su pokazali kako AI može nevjerojatno dobro zaključivati i snalaziti se u raznim situacijama. Zapravo, ukoliko se želi razumjeti kako današnja AI funkcionira, najvažnije je shvatiti upravo taj odnos između te dvije skupine modela \cite{naveed2025comprehensive} \cite{zhou2025comprehensive}.
+
+\subsection{Temeljni modeli}
+
+Temeljni modeli (često u literaturi nazivani i \textit{Pretrained Foundation Models} - PFMs) definiraju se kao modeli velikih kapaciteta koji su pretrenirani na masivnim i heterogenim skupovima podataka, čime stječu opće reprezentacije primjenjive na niz različitih nizvodnih zadataka. Povijesni razvoj ovih modela, od ranih jezičnih reprezentacija poput BERT-a do kompleksnih multimodalnih sustava, ukazuje na trend u kojem se kroz povećanje računalne skale i količine podataka postiže visoka razina transfernog učenja. Ovakav pristup omogućuje da se jedan centralni model, uz minimalne prilagodbe, uspješno koristi u domenama koje variraju od računalnog vida do analize grafova, čime se radikalno mijenja proces dizajna inteligentnih sustava \cite{zhou2025comprehensive}.
+
+Ključna prednost temeljnih modela leži u njihovoj sposobnosti prilagodbe specifičnim kontekstima putem metoda kao što su fino podešavanje (fine-tuning), instrukcijsko učenje ili tehnike parametarski učinkovite adaptacije. Međutim, oslanjanje na jedan centralni model donosi i značajne izazove, prvenstveno u pogledu nasljeđivanja pristranosti iz pretreniranih podataka, sigurnosnih rizika te potrebe za rigoroznom evaluacijom robusnosti. Stoga se suvremena istraživanja ne fokusiraju samo na povećanje performansi, već i na razvoj mehanizama koji osiguravaju privatnost, etičnost i pouzdanost modela u produkcijskim okruženjima, čineći temeljne modele ne samo tehnološkim alatom, već i kompleksnim ekosustavom koji zahtijeva multidisciplinarni nadzor \cite{naveed2025comprehensive}.
+
+\subsection{Veliki jezični modeli (LLM)}
+
+Veliki jezični modeli predstavljaju specijalizaciju temeljnih modela unutar domene prirodnog jezika, karakterizirani milijardama parametara i treniranjem na korpusima teksta koji obuhvaćaju značajan dio ljudskog znanja. Za razliku od tradicionalnih modela za obradu jezika, LLM-ovi pokazuju takozvana "izranjajuća" (emergentna) svojstva – sposobnosti poput rješavanja logičkih problema ili učenja iz konteksta koje se pojavljuju tek pri dosezanju određene kritične mase parametara i podataka. Evolucija ovih modela dovela je do pomaka s jednostavnog predviđanja sljedećeg tokena prema sustavima koji su usklađeni s ljudskim namjerama putem metoda poravnanja, čime postaju sposobni za kompleksnu interakciju i izvršavanje složenih korisničkih uputa \cite{zhou2025comprehensive} \cite{naveed2025comprehensive}.
+
+Arhitektonski temelj LLM-ova čini Transformer arhitektura, čija skalabilnost i paralelizacija omogućuju obradu ogromnih količina informacija uz korištenje naprednih varijanti mehanizama pažnje. Kako bi se prevladali visoki računalni troškovi treniranja i inferencije, istraživački fokus se sve više usmjerava prema optimizaciji arhitekture, uključujući efikasnije metode pozicijskog kodiranja i tehnike kompresije modela poput kvantizacije i "obrezivanja". Ovi tehnički napredci omogućuju širu dostupnost LLM-ova, pretvarajući ih iz isključivo istraživačkih artefakata u praktične komponente koje se mogu integrirati u različite softverske arhitekture uz zadržavanje visoke razine preciznosti \cite{zhou2025comprehensive}.
+
+U suvremenim primjenama, LLM-ovi se rijetko koriste kao izolirani sustavi. Umjesto toga, oni postaju jezgra širih okvira koji uključuju vanjske izvore znanja kroz metode poput generiranja potpomognutog dohvatom (\textit{Retrieval-Augmented Generation} - RAG). Ovakva integracija rješava inherentne probleme modela, poput halucinacija i nedostatka ažurnih informacija, dok istovremeno omogućuje specijalizaciju za specifične domene bez potrebe za skupim ponovnim treniranjem. Konačno, proces evaluacije LLM-ova evoluirao je od jednostavnih metričkih pokazatelja prema kompleksnim benchmark testovima koji ispituju kognitivne sposobnosti, etičku usklađenost i praktičnu korisnost, čime se zaokružuje razvojni ciklus modela od sirovog pretreniranja do pouzdanog inteligentnog agenta \cite{zhou2025comprehensive} \cite{naveed2025comprehensive}.
+
+\section{Tehničke osnove: transformer i \emph{attention}}
+
+\subsection{Transformer arhitektura}
+
+\begin{itemize}
+  \item Transformer arhitektura omogućava paralelno treniranje, čime se olakšava skaliranje na vrlo velike modele.
+  \item Ključna prednost je sposobnost modeliranja odnosa među elementima ulaza i u dugim ili složenim rečenicama.
+\end{itemize}
+
+\subsection{\emph{Attention} mehanizam}
+
+\begin{itemize}
+  \item \emph{Attention} opisuje način na koji model procjenjuje koji su dijelovi ulaza relevantni za generiranje izlaza.
+  \item Višeglavi (\emph{multi-head}) \emph{attention} omogućuje istovremeno fokusiranje na različite aspekte značenja (npr. referenca zamjenica, semantičke veze, stil).
+\end{itemize}
+
+\section{Rad s LLM-ovima u aplikacijama: tokeni, kontekst i kontrola generiranja}
+\label{sec:tokeni-kontekst-generiranje}
+\subsection{Tokeni i tokenizacija}
+\label{subsec:tokeni}
+\begin{itemize}
+  \item Token predstavlja osnovnu jedinicu teksta koju model obrađuje (ponekad cijela riječ, ponekad dio riječi ili interpunkcija).
+  \item Model generira izlaz sekvencijalno, token po token, što izravno utječe na cijenu i vrijeme izvođenja.
+\end{itemize}
+
+\subsection{Kontekst modela}
+\label{subsec:kontekst}
+\begin{itemize}
+  \item Kontekst označava maksimalnu količinu teksta s kojom model može raditi odjednom (analogno radnoj memoriji).
+  \item Ograničenja konteksta motiviraju tehnike poput sažimanja, \emph{chunking}-a i RAG pristupa.
+\end{itemize}
+
+\subsection{Parametri generiranja: \emph{temperature}, top-k i top-p}
+\label{subsec:parametri-generiranja}
+\begin{itemize}
+  \item \textbf{\emph{Temperature}} kontrolira stupanj stohastičnosti: niže vrijednosti daju predvidljivije i stabilnije odgovore, više vrijednosti potiču raznolikost.
+  \item \textbf{Top-k} ograničava izbor sljedećeg tokena na $k$ najvjerojatnijih kandidata.
+  \item \textbf{Top-p} (\emph{nucleus sampling}) odabire najmanji skup tokena čija kumulativna vjerojatnost prelazi prag $p$.
+\end{itemize}
+
+\section{Prilagodba ponašanja bez treniranja: prompt engineering i \emph{in-context} učenje}
+\label{sec:prompting-icl}
+\subsection{Prompt engineering}
+\label{subsec:prompt-engineering}
+\begin{itemize}
+  \item Prompt engineering predstavlja oblikovanje uputa modelu (npr. zadavanje uloge, očekivanog formata izlaza i pravila) radi konzistentnijih rezultata.
+\end{itemize}
+
+\subsection{Sistemski i korisnički prompt}
+\label{subsec:sistemski-korisnicki}
+\begin{itemize}
+  \item Sistemski prompt definira opće ponašanje modela u interakciji.
+  \item Korisnički prompt predstavlja konkretan zahtjev u određenom trenutku.
+\end{itemize}
+
+\subsection{\emph{In-context} learning}
+\label{subsec:icl}
+\begin{itemize}
+  \item \emph{In-context} učenje postiže se davanjem primjera unutar prompta, čime se model privremeno usmjerava bez trajne promjene parametara.
+\end{itemize}
+
+\section{Prilagodba modela treniranjem i optimizacije za primjenu}
+\label{sec:finetuning-optimizacije}
+\subsection{Fine-tuning i PEFT}
+\label{subsec:finetuning-peft}
+\begin{itemize}
+  \item Fine-tuning podrazumijeva dodatno treniranje modela na ciljanim podacima radi stabilnijeg ponašanja u specifičnom zadatku ili domeni.
+  \item PEFT (\emph{Parameter-Efficient Fine-Tuning}) pristupi mijenjaju manji dio parametara ili dodaju adaptere (npr. LoRA), čime se smanjuje računalni i memorijski trošak.
+\end{itemize}
+
+\subsection{Preference fine-tuning}
+\label{subsec:preference-finetuning}
+\begin{itemize}
+  \item Preference fine-tuning temelji se na ocjenama korisnika/annotatora, pri čemu model uči preferirati odgovore koji se smatraju korisnijima, sigurnijima i prikladnijima.
+\end{itemize}
+
+\subsection{Kvantizacija i destilacija}
+\label{subsec:kvantizacija-destilacija}
+\begin{itemize}
+  \item Kvantizacija smanjuje preciznost zapisa parametara (manje bitova), što rezultira manjim modelom i bržim izvođenjem.
+  \item Destilacija trenira manji (\emph{student}) model da imitira veći (\emph{teacher}) model uz cilj smanjenja resursnih zahtjeva uz zadržavanje performansi.
+\end{itemize}
+
+\section{RAG: povezivanje modela s vanjskim znanjem}
+\label{sec:rag}
+\subsection{Osnovna ideja RAG-a}
+\label{subsec:rag-ideja}
+\begin{itemize}
+  \item Retrieval-Augmented Generation (RAG) kombinira dohvat relevantnih dokumenata iz baze znanja i generiranje odgovora na temelju dohvaćenog sadržaja.
+  \item Cilj je povećati aktualnost i pouzdanost odgovora te smanjiti oslanjanje na implicitno znanje iz treniranja.
+\end{itemize}
+
+\subsection{Embeddings i vektorske baze podataka}
+\label{subsec:embeddings-vektorske-baze}
+\begin{itemize}
+  \item \emph{Embeddings} preslikavaju tekst u vektore tako da semantički slični izrazi budu blizu u vektorskom prostoru.
+  \item Vektorske baze omogućuju efikasno pretraživanje najsličnijih vektora upitu, tj. semantički dohvat.
+\end{itemize}
+
+\subsection{\emph{Chunking}}
+\label{subsec:chunking}
+\begin{itemize}
+  \item \emph{Chunking} dijeli dokumente na manje cjeline radi lakšeg pretraživanja i zbog ograničenja konteksta modela.
+  \item Odabir veličine i strategije segmentacije utječe na kvalitetu dohvaćenih informacija i konačni odgovor.
+\end{itemize}
+
+\section{Agenti i alati}
+\label{sec:agenti-alati}
+\begin{itemize}
+  \item Agent predstavlja pristup u kojem sustav planira korake i izvršava radnje prema cilju (npr. višekorakno rješavanje zadatka).
+  \item Integracija alata omogućuje modelu izvođenje stvarnih radnji (npr. dohvat podataka, poziv API-ja), a ne samo generiranje teksta.
+\end{itemize}
+
+\section{Evaluacija i operativni aspekti (inferenca, latencija, metrike)}
+\label{sec:evaluacija-operativa}
+\subsection{Inferenca: online i batch}
+\label{subsec:inferenca}
+\begin{itemize}
+  \item Online inferenca isporučuje odgovore u stvarnom vremenu.
+  \item Batch inferenca obrađuje veći broj zahtjeva izvan realnog vremena (npr. periodički poslovi).
+\end{itemize}
+
+\subsection{Latencija}
+\label{subsec:latencija}
+\begin{itemize}
+  \item Latencija je vrijeme do prvog korisnog izlaza i predstavlja kritičan faktor korisničkog iskustva u interaktivnim sustavima.
+\end{itemize}
+
+\subsection{Benchmarkovi i metrike}
+\label{subsec:benchmarkovi-metrike}
+\begin{itemize}
+  \item Benchmarkovi služe za usporedbu modela na standardiziranim zadacima (npr. razumijevanje teksta, matematika, kodiranje).
+  \item Primjeri metrika:
+  \begin{itemize}
+    \item \textbf{Perplexity} (mjera “iznenađenja" modela nad tekstom),
+    \item \textbf{BLEU} (podudaranje s referencom, česta u prijevodu),
+    \item \textbf{ROUGE} (naglasak na \emph{recall}, česta u sažimanju).
+  \end{itemize}
+  \item \textbf{LLM-as-Judge} koristi model za ocjenu izlaza drugog modela prema zadanim kriterijima (npr. praćenje uputa, jasnoća, relevantnost).
+\end{itemize}
+
+\section{(Opcionalno) Model Context Protocol (MCP)}
+\label{sec:mcp}
+\begin{itemize}
+  \item MCP predstavlja standardizirani način povezivanja modela, aplikacija i alata kroz jedinstveno sučelje, s ciljem smanjenja potrebe za prilagođenim integracijama.
+\end{itemize}
+
+\section{Zaključak poglavlja}
+\label{sec:zakljucak-ai-inzenjerstvo}
+\begin{itemize}
+  \item U poglavlju su objašnjeni temeljni pojmovi AI inženjerstva, od arhitekture i rada LLM-ova do metoda prilagodbe, RAG pristupa, agentnih sustava te evaluacije i operativnih metrika.
+  \item Navedeni koncepti čine osnovu za izgradnju pouzdanih i učinkovitih AI aplikacija te predstavljaju teorijski temelj za daljnje dijelove rada.
+\end{itemize}
+
+\chapter{Evaluacija Chatbotova i halucinacije}
+
+\chapter{Zaključak}
+
+\makebackmatter
+
+\appendices
+
+\chapter{Prilog 1}
+
+\end{document}
