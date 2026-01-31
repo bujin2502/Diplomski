@@ -208,61 +208,77 @@ Potrebne vještine:
 
 \section{Temeljni modeli i veliki jezični modeli (LLM)}
 
-Današnji razvoj umjetne inteligencije više se ne vrti oko izrade malih, specijaliziranih programa za samo jedan zadatak. Umjesto toga, sve se temelji na moćnim, unaprijed obučenim sustavima koji služe kao univerzalna baza za sve ostalo. U središtu te promjene su temeljni modeli, a unutar njih svima poznati veliki jezični modeli (LLM). Dok su temeljni modeli širi pojam i mogu raditi sa slikama ili zvukom, LLM-ovi su tu tehnologiju doveli do savršenstva u radu s tekstom. Oni su pokazali kako AI može nevjerojatno dobro zaključivati i snalaziti se u raznim situacijama. Zapravo, ukoliko se želi razumjeti kako današnja AI funkcionira, najvažnije je shvatiti upravo taj odnos između te dvije skupine modela \cite{naveed2025comprehensive} \cite{zhou2025comprehensive}.
+Današnji razvoj umjetne inteligencije više se ne vrti oko izrade malih, specijaliziranih programa za samo jedan zadatak. Umjesto toga, sve se temelji na moćnim, unaprijed obučenim sustavima koji služe kao univerzalna baza za sve ostalo. U središtu te promjene su temeljni modeli, a unutar njih svima poznati veliki jezični modeli (LLM). Dok su temeljni modeli širi pojam i mogu raditi sa slikama ili zvukom, LLM-ovi su tu tehnologiju doveli do savršenstva u radu s tekstom. Oni su pokazali kako AI može nevjerojatno dobro zaključivati i snalaziti se u raznim situacijama. Zapravo, ukoliko se želi razumjeti kako današnja AI funkcionira, najvažnije je shvatiti upravo taj odnos između te dvije skupine modela \cite{naveed2025comprehensive} \cite{zhou2023comprehensive}.
 
 \subsection{Temeljni modeli}
 
-Temeljni modeli (često u literaturi nazivani i \textit{Pretrained Foundation Models} - PFMs) definiraju se kao modeli velikih kapaciteta koji su pretrenirani na masivnim i heterogenim skupovima podataka, čime stječu opće reprezentacije primjenjive na niz različitih nizvodnih zadataka. Povijesni razvoj ovih modela, od ranih jezičnih reprezentacija poput BERT-a do kompleksnih multimodalnih sustava, ukazuje na trend u kojem se kroz povećanje računalne skale i količine podataka postiže visoka razina transfernog učenja. Ovakav pristup omogućuje da se jedan centralni model, uz minimalne prilagodbe, uspješno koristi u domenama koje variraju od računalnog vida do analize grafova, čime se radikalno mijenja proces dizajna inteligentnih sustava \cite{zhou2025comprehensive}.
+Temeljni modeli (često u literaturi nazivani i \textit{Pretrained Foundation Models} - PFMs) definiraju se kao modeli velikih kapaciteta koji su pretrenirani na masivnim i heterogenim skupovima podataka, čime stječu opće reprezentacije primjenjive na niz različitih nizvodnih zadataka. Povijesni razvoj ovih modela, od ranih jezičnih reprezentacija poput BERT-a do kompleksnih multimodalnih sustava, ukazuje na trend u kojem se kroz povećanje računalne skale i količine podataka postiže visoka razina transfernog učenja. Ovakav pristup omogućuje da se jedan centralni model, uz minimalne prilagodbe, uspješno koristi u domenama koje variraju od računalnog vida do analize grafova, čime se radikalno mijenja proces dizajna inteligentnih sustava \cite{zhou2023comprehensive}.
 
 Ključna prednost temeljnih modela leži u njihovoj sposobnosti prilagodbe specifičnim kontekstima putem metoda kao što su fino podešavanje (fine-tuning), instrukcijsko učenje ili tehnike parametarski učinkovite adaptacije. Međutim, oslanjanje na jedan centralni model donosi i značajne izazove, prvenstveno u pogledu nasljeđivanja pristranosti iz pretreniranih podataka, sigurnosnih rizika te potrebe za rigoroznom evaluacijom robusnosti. Stoga se suvremena istraživanja ne fokusiraju samo na povećanje performansi, već i na razvoj mehanizama koji osiguravaju privatnost, etičnost i pouzdanost modela u produkcijskim okruženjima, čineći temeljne modele ne samo tehnološkim alatom, već i kompleksnim ekosustavom koji zahtijeva multidisciplinarni nadzor \cite{naveed2025comprehensive}.
 
 \subsection{Veliki jezični modeli (LLM)}
 
-Veliki jezični modeli predstavljaju specijalizaciju temeljnih modela unutar domene prirodnog jezika, karakterizirani milijardama parametara i treniranjem na korpusima teksta koji obuhvaćaju značajan dio ljudskog znanja. Za razliku od tradicionalnih modela za obradu jezika, LLM-ovi pokazuju takozvana "izranjajuća" (emergentna) svojstva -- sposobnosti poput rješavanja logičkih problema ili učenja iz konteksta koje se pojavljuju tek pri dosezanju određene kritične mase parametara i podataka. Evolucija ovih modela dovela je do pomaka s jednostavnog predviđanja sljedećeg tokena prema sustavima koji su usklađeni s ljudskim namjerama putem metoda poravnanja, čime postaju sposobni za kompleksnu interakciju i izvršavanje složenih korisničkih uputa \cite{zhou2025comprehensive} \cite{naveed2025comprehensive}.
+Veliki jezični modeli predstavljaju specijalizaciju temeljnih modela unutar domene prirodnog jezika, karakterizirani milijardama parametara i treniranjem na korpusima teksta koji obuhvaćaju značajan dio ljudskog znanja. Za razliku od tradicionalnih modela za obradu jezika, LLM-ovi pokazuju takozvana "izranjajuća" (emergentna) svojstva -- sposobnosti poput rješavanja logičkih problema ili učenja iz konteksta koje se pojavljuju tek pri dosezanju određene kritične mase parametara i podataka. Evolucija ovih modela dovela je do pomaka s jednostavnog predviđanja sljedećeg tokena prema sustavima koji su usklađeni s ljudskim namjerama putem metoda poravnanja, čime postaju sposobni za kompleksnu interakciju i izvršavanje složenih korisničkih uputa \cite{zhou2023comprehensive} \cite{naveed2025comprehensive}.
 
-Arhitektonski temelj LLM-ova čini Transformer arhitektura, čija skalabilnost i paralelizacija omogućuju obradu ogromnih količina informacija uz korištenje naprednih varijanti mehanizama pažnje. Kako bi se prevladali visoki računalni troškovi treniranja i inferencije, istraživački fokus se sve više usmjerava prema optimizaciji arhitekture, uključujući efikasnije metode pozicijskog kodiranja i tehnike kompresije modela poput kvantizacije i "obrezivanja". Ovi tehnički napredci omogućuju širu dostupnost LLM-ova, pretvarajući ih iz isključivo istraživačkih artefakata u praktične komponente koje se mogu integrirati u različite softverske arhitekture uz zadržavanje visoke razine preciznosti \cite{zhou2025comprehensive}.
+Arhitektonski temelj LLM-ova čini Transformer arhitektura, čija skalabilnost i paralelizacija omogućuju obradu ogromnih količina informacija uz korištenje naprednih varijanti mehanizama pažnje. Kako bi se prevladali visoki računalni troškovi treniranja i inferencije, istraživački fokus se sve više usmjerava prema optimizaciji arhitekture, uključujući efikasnije metode pozicijskog kodiranja i tehnike kompresije modela poput kvantizacije i "obrezivanja". Ovi tehnički napredci omogućuju širu dostupnost LLM-ova, pretvarajući ih iz isključivo istraživačkih artefakata u praktične komponente koje se mogu integrirati u različite softverske arhitekture uz zadržavanje visoke razine preciznosti \cite{zhou2023comprehensive}.
 
-U suvremenim primjenama, LLM-ovi se rijetko koriste kao izolirani sustavi. Umjesto toga, oni postaju jezgra širih okvira koji uključuju vanjske izvore znanja kroz metode poput generiranja potpomognutog dohvatom (\textit{Retrieval-Augmented Generation} - RAG). Ovakva integracija rješava inherentne probleme modela, poput halucinacija i nedostatka ažurnih informacija, dok istovremeno omogućuje specijalizaciju za specifične domene bez potrebe za skupim ponovnim treniranjem. Konačno, proces evaluacije LLM-ova evoluirao je od jednostavnih metričkih pokazatelja prema kompleksnim benchmark testovima koji ispituju kognitivne sposobnosti, etičku usklađenost i praktičnu korisnost, čime se zaokružuje razvojni ciklus modela od sirovog pretreniranja do pouzdanog inteligentnog agenta \cite{zhou2025comprehensive} \cite{naveed2025comprehensive}.
+U suvremenim primjenama, LLM-ovi se rijetko koriste kao izolirani sustavi. Umjesto toga, oni postaju jezgra širih okvira koji uključuju vanjske izvore znanja kroz metode poput generiranja potpomognutog dohvatom (\textit{Retrieval-Augmented Generation} - RAG). Ovakva integracija rješava inherentne probleme modela, poput halucinacija i nedostatka ažurnih informacija, dok istovremeno omogućuje specijalizaciju za specifične domene bez potrebe za skupim ponovnim treniranjem. Konačno, proces evaluacije LLM-ova evoluirao je od jednostavnih metričkih pokazatelja prema kompleksnim benchmark testovima koji ispituju kognitivne sposobnosti, etičku usklađenost i praktičnu korisnost, čime se zaokružuje razvojni ciklus modela od sirovog pretreniranja do pouzdanog inteligentnog agenta \cite{zhou2023comprehensive} \cite{naveed2025comprehensive}.
 
 \section{Tehničke osnove: transformer i \emph{attention}}
 
+Prije pojave Transformera, rekurentne neuronske mreže poput LSTM i GRU bile su standardni izbor za obradu sekvenci teksta. Njihov glavni nedostatak bila je sekvencijalna obrada -- svaki element sekvence morao se obraditi tek nakon prethodnog, što je onemogućavalo paralelizaciju i usporavalo treniranje na dugim sekvencama \cite{vaswani2017attention}. Transformer arhitektura riješila je ovaj problem potpunim odbacivanjem rekurencije i oslanjanjem isključivo na mehanizme pažnje (\emph{attention}), čime je postala temeljna arhitektura za suvremene jezične modele \cite{zhou2023comprehensive}.
+
 \subsection{Transformer arhitektura}
 
-\begin{itemize}
-  \item Transformer arhitektura omogućava paralelno treniranje, čime se olakšava skaliranje na vrlo velike modele.
-  \item Ključna prednost je sposobnost modeliranja odnosa među elementima ulaza i u dugim ili složenim rečenicama.
-\end{itemize}
+Transformer se sastoji od dva glavna dijela: kodera (\emph{encoder}) koji obrađuje ulazni tekst i dekodera (\emph{decoder}) koji generira izlazni tekst. Koder pretvara ulaznu sekvencu u numeričke reprezentacije koje dekoder koristi za generiranje izlaza, element po element. Model je autoregresivan -- pri generiranju svakog novog elementa koristi sve prethodno generirane elemente kao kontekst \cite{vaswani2017attention}.
+
+Ključna prednost ove arhitekture je sposobnost da istovremeno ``vidi'' sve dijelove ulazne sekvence, neovisno o njihovoj međusobnoj udaljenosti. Ovo omogućuje učinkovito hvatanje dugodosežnih ovisnosti u tekstu, što je kod rekurentnih mreža predstavljalo značajan izazov \cite{vaswani2017attention}. Također, budući da se sve pozicije mogu obraditi paralelno, Transformer omogućuje znatno brže treniranje na modernim GPU jedinicama \cite{vaswani2017attention}.
 
 \subsection{\emph{Attention} mehanizam}
 
-\begin{itemize}
-  \item \emph{Attention} opisuje način na koji model procjenjuje koji su dijelovi ulaza relevantni za generiranje izlaza.
-  \item Višeglavi (\emph{multi-head}) \emph{attention} omogućuje istovremeno fokusiranje na različite aspekte značenja (npr. referenca zamjenica, semantičke veze, stil).
-\end{itemize}
+Attention mehanizam omogućuje modelu da pri obradi svakog elementa sekvence ``obrati pažnju'' na relevantne dijelove ulaza. Funkcionira tako da za svaki element (upit) izračuna koliko je povezan sa svim ostalim elementima (ključevima), a zatim koristi te povezanosti kao težine za kombiniranje vrijednosti. Matematički se to izražava formulom \cite{vaswani2017attention}:
+\[
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\]
+
+Višeglavi attention (\emph{multi-head attention}) proširuje ovaj mehanizam izvođenjem više paralelnih attention operacija, svaka s različitim naučenim projekcijama. Rezultati se zatim spajaju, što modelu omogućuje istovremeno fokusiranje na različite vrste informacija -- primjerice, jedna ``glava'' može pratiti sintaktičke odnose, dok druga prati semantičke veze \cite{vaswani2017attention}.
+
 
 \section{Rad s LLM-ovima u aplikacijama: tokeni, kontekst i kontrola generiranja}
-\label{sec:tokeni-kontekst-generiranje}
+
+Veliki jezični modeli obrađuju tekst na način koji se razlikuje od tradicionalnog pristupa čitanju i pisanju. Umjesto da rad s tekstom temelji na riječima ili rečenicama, LLM-ovi koriste tokene kao osnovne jedinice obrade i generiraju tekst sekvencijalno, token po token. Razumijevanje ovih procesa ključno je za učinkovitu primjenu LLM-ova u praktičnim aplikacijama.
+
 \subsection{Tokeni i tokenizacija}
-\label{subsec:tokeni}
-\begin{itemize}
-  \item Token predstavlja osnovnu jedinicu teksta koju model obrađuje (ponekad cijela riječ, ponekad dio riječi ili interpunkcija).
-  \item Model generira izlaz sekvencijalno, token po token, što izravno utječe na cijenu i vrijeme izvođenja.
-\end{itemize}
+
+Token predstavlja osnovnu jedinicu teksta koju model obrađuje tijekom svog rada. Ovisno o postupku tokenizacije, token može biti znak, podriječ, simbol ili cijela riječ \cite{vaswani2017attention}. Tokenizacija je bitna faza predobrade koja tekst rastavlja na ove nedjeljivije jedinice. Najčešće korištene metode tokenizacije kod LLM-ova uključuju wordpiece, kodiranje parom bajtova (BPE) i unigramLM \cite{zhou2023comprehensive}.
+
+Proces tokenizacije započinje tako što se ulazni tekst pretvara u niz tokena, pri čemu svaki token dobiva jedinstveni identifikator iz rječnika modela. Na primjer, riječ "tokenization" može biti podijeljena na više tokena poput "token", "ization" ili čak na manje jedinice ovisno o primijenjenom algoritmu. Vaswani i suradnici koriste naučene vektorske reprezentacije (\emph{embeddings}) za pretvaranje ulaznih i izlaznih tokena u vektore dimenzije $d_{model}$ \cite{vaswani2017attention}. Ove vektorske reprezentacije omogućuju modelu da razumije semantičke odnose između različitih tokena.
+
+Model generira izlaz sekvencijalno, predviđajući sljedeći token na temelju prethodno generiranih tokena. Ovaj proces iterativnog generiranja znači da model mora za svaki novi token izvršiti proračun kroz sve svoje slojeve, što izravno utječe na brzinu izvođenja i cijenu korištenja modela. Veći broj tokena u ulazu ili izlazu povećava računske zahtjeve i vrijeme potrebno za dobivanje odgovora. Različiti LLM-ovi koriste različite veličine rječnika tokena -- primjerice, GPT-3 koristi približno 50.000 tokena, dok BLOOM koristi 250.000 tokena u svom rječniku \cite{zhou2023comprehensive}.
 
 \subsection{Kontekst modela}
-\label{subsec:kontekst}
-\begin{itemize}
-  \item Kontekst označava maksimalnu količinu teksta s kojom model može raditi odjednom (analogno radnoj memoriji).
-  \item Ograničenja konteksta motiviraju tehnike poput sažimanja, \emph{chunking}-a i RAG pristupa.
-\end{itemize}
+
+Kontekst modela označava maksimalnu količinu teksta s kojom model može raditi odjednom. Može se zamisliti kao radna memorija modela -- sve što model "vidi" i "pamti" tijekom obrade jednog zahtjeva ograničeno je veličinom ovog kontekstnog prozora. LLM-ovi su tradicionalno trenirani s ograničenim kontekstnim prozorima zbog računske složenosti mehanizma pažnje i visokih zahtjeva za memorijom \cite{zhou2023comprehensive}.
+
+Ograničenja konteksta predstavljaju važan praktični izazov. Model koji je treniran s ograničenom duljinom sekvence obično ne može uspješno generalizirati na veće duljine tijekom primjene. Proširivanje kontekstnog prozora tijekom finog podešavanja modela je spor, neučinkovit i računski skup proces \cite{zhou2023comprehensive}. Zbog toga su razvijene različite tehnike za proširenje konteksta poput interpolacije pozicijskih kodiranja i učinkovitijih mehanizama pažnje.
+
+Gustim globalnim mehanizmom pažnje jedan je od glavnih uzroka ograničenja pri treniranju modela s većim kontekstnim prozorima. Korištenje učinkovitijih varijanti pažnje, poput lokalne, rijetke ili dilatirane pažnje, može značajno smanjiti računsku složenost. Na primjer, LongT5 koristi prijelaznu globalnu pažnju (TGlobal) koja kombinira lokalnu i globalnu pažnju, što omogućuje proširenje konteksta na 16.000 tokena \cite{zhou2023comprehensive}.
+
+Ograničenja konteksta motiviraju razvoj različitih tehnika za rad s dugim dokumentima. Tehnike poput sažimanja sadržaja, dijeljenja teksta na manje dijelove (\emph{chunking}) i pristupa proširene generiranja s dohvaćanjem (RAG) omogućuju modelima pristup većoj količini informacija nego što stane u njihov kontekstni prozor. RAG pristup kombinira vanjsko pohranjivanje informacija s mogućnostima generiranja LLM-a, čime se omogućuje pristup ažurnim podacima i smanjuje pojava halucinacija \cite{zhou2023comprehensive}.
 
 \subsection{Parametri generiranja: \emph{temperature}, top-k i top-p}
-\label{subsec:parametri-generiranja}
-\begin{itemize}
-  \item \textbf{\emph{Temperature}} kontrolira stupanj stohastičnosti: niže vrijednosti daju predvidljivije i stabilnije odgovore, više vrijednosti potiču raznolikost.
-  \item \textbf{Top-k} ograničava izbor sljedećeg tokena na $k$ najvjerojatnijih kandidata.
-  \item \textbf{Top-p} (\emph{nucleus sampling}) odabire najmanji skup tokena čija kumulativna vjerojatnost prelazi prag $p$.
-\end{itemize}
+
+Nakon što model procesira ulazne tokene kroz svoje slojeve, dobiva se izlazna raspodjela vjerojatnosti za sve moguće sljedeće tokene. Transformer arhitektura koristi linearnu transformaciju i softmax funkciju za pretvaranje izlaza dekodera u vjerojatnosti sljedećeg tokena \cite{vaswani2017attention}. Softmax funkcija normalizira rezultate tako da zbroj svih vjerojatnosti bude jednak jedan, čime se dobiva valjana vjerojatnosna raspodjela.
+
+Različiti parametri kontroliraju kako model bira sljedeći token iz ove raspodjele vjerojatnosti, što omogućuje podešavanje ravnoteže između kreativnosti i dosljednosti generiraneg teksta.
+
+\textbf{\emph{Temperature}} je parametar koji kontrolira stupanj stohastičnosti u procesu generiranja. Temperature modificira vjerojatnosnu raspodjelu prije primjene softmax funkcije tako što dijeli logite s vrijednošću temperature. Niže vrijednosti temperature (bliže nuli) čine raspodjelu oštrijom -- model postaje konzervativniji i češće bira tokene s najvećom vjerojatnosti, što rezultira predvidljivijim i stabilnijim odgovorima. Više vrijednosti temperature (veće od jedan) zaglađuju raspodjelu vjerojatnosti, dajući više šanse tokenima s nižom vjerojatnosti, što potiče veću raznolikost i kreativnost u generiranom tekstu. Temperatura se često koristi pri treniranju modela za generiranje prirodnog jezika kako bi se poboljšala kvaliteta prijevoda ili generiranih sekvenci \cite{zhou2023comprehensive}.
+
+\textbf{Top-k uzorkovanje} ograničava izbor sljedećeg tokena na $k$ najvjerojatnijih kandidata iz raspodjele vjerojatnosti. Nakon što se identificira prvih $k$ tokena s najvećom vjerojatnosti, model uzorkuje sljedeći token samo iz ovog ograničenog skupa, zanemarujući sve ostale mogućnosti. Ovaj pristup spriječava model da bira vrlo nevjerojatne tokene koji mogu narušiti koherentnost teksta, ali istovremeno omogućuje određenu raznolikost među najvjerojatnijim opcijama. Vrijednost parametra $k$ određuje koliko će kandidata biti razmatrano -- manja vrijednost rezultira konzervativnijim odabirom, dok veća vrijednost dopušta više varijabilnosti.
+
+\textbf{Top-p uzorkovanje}, poznato i kao \emph{nucleus sampling}, predstavlja dinamičniji pristup filtriranju kandidata. Umjesto fiksnog broja tokena, ovaj metoda odabire najmanji skup tokena čija kumulativna vjerojatnost prelazi zadani prag $p$ (obično između 0.9 i 0.95). To znači da model automatski prilagođava veličinu skupa kandidata ovisno o distribuciji vjerojatnosti -- kada je jedan token dominantan, skup će biti manji, a kada je više tokena približno jednako vjerojatno, skup će biti veći. Ovaj pristup omogućuje modelu da prilagodi razinu konzervativnosti ovisno o pouzdanosti predikcije u svakom koraku generiranja.
+
+Kombinacija ovih parametara omogućuje fino podešavanje ponašanja modela prema specifičnim potrebama primjene. Za zadatke koji zahtijevaju preciznost i dosljednost, poput generiranja programskog koda ili formalnih dokumenata, koriste se niže vrijednosti temperature i konzervativnije strategije uzorkovanja. S druge strane, za kreativne zadatke poput pisanja priča ili generiranja ideja, preporučuju se više vrijednosti temperature i fleksibilnije strategije uzorkovanja koje potiču raznolikost u generiranom sadržaju.
 
 \section{Prilagodba ponašanja bez treniranja: prompt engineering i \emph{in-context} učenje}
 \label{sec:prompting-icl}
