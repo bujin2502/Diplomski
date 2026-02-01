@@ -12,23 +12,27 @@
 \RequirePackage[a4paper, left=2.5cm, right=2.5cm, bottom=2.5cm, top=2.5cm]{geometry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[\jezik]{babel}
+\RequirePackage{csquotes}
+\renewcommand*{\mkcitation}[1]{~#1}
+\renewcommand\mkblockquote[4]{\enquote{#1#2#3}#4}
+
 \RequirePackage[T1]{fontenc}
 \RequirePackage{anyfontsize}
-\RequirePackage{graphicx}
-\RequirePackage{amssymb}
-\RequirePackage{amsmath}
+\RequirePackage{graphicx} % Uključeno jer je često korišteno
+\RequirePackage{amssymb} % Uključeno jer je često korišteno
+\RequirePackage{amsmath} % Uključeno jer je često korišteno
 \RequirePackage{caption}
 \RequirePackage{ifthen}
-\RequirePackage{xurl}
-\RequirePackage{enumitem}
+\RequirePackage{url} % Potrebno radi natbiba
+\RequirePackage{enumitem} % Potrebno radi izmjene itemize okoline
 \RequirePackage{titlesec}
-\RequirePackage{tabularx}
-\RequirePackage{fancyhdr}
-\RequirePackage{chngcntr}
-\RequirePackage[table]{xcolor}
+\RequirePackage{tabularx} % tablice
+\RequirePackage{fancyhdr} % zaglavlja
+\RequirePackage{chngcntr} % promjena brojača
+\RequirePackage[table]{xcolor} % bojanje tablica
 \RequirePackage{times}
-\RequirePackage{courier}
-\RequirePackage[backend=biber, style=ieee, date=terse, isbn=true, url=false]{biblatex}
+\RequirePackage{courier} % za programski kod
+\RequirePackage[backend=biber, style=ieee, date=terse, isbn=true, url=false]{biblatex} % IEEE stil citiranja
 \addbibresource{lib.bib}
 
 \usepackage[printonlyused]{acronym}
@@ -39,6 +43,7 @@
 \RequirePackage{setspace}
 \RequirePackage{textcase}
 
+% stvaranje poveznica u dokumentu
 \RequirePackage[pdftex,
 bookmarks=true,
 bookmarksnumbered=true,
@@ -51,7 +56,8 @@ pdfborder={0 0 0},
 unicode
 ]{hyperref} 
 
-\RequirePackage{listings}
+\RequirePackage{listings} % ispis programskog koda
+% postavke za programski kod s UTF8 znakovima
 \lstset{ 
     escapeinside={\%*}{*)},
     extendedchars=false,
@@ -87,67 +93,87 @@ unicode
 }
 \SetupFloatingEnvironment{listing}{name=\prijevod{Isječak koda}{Listing}}
 \SetupFloatingEnvironment{listing}{listname=\prijevod{Popis isječaka koda}{List of Listings}}
+\usepackage{caption}
 \newenvironment{longlisting}{\captionsetup{type=listing}}{}
 
-\RequirePackage{csquotes}
-\renewcommand*{\mkcitation}[1]{~#1}
-\renewcommand\mkblockquote[4]{\enquote{#1#2#3}#4}
 
-
-\BeforeBeginEnvironment{minted}{
+\BeforeBeginEnvironment{minted}{%
     \setlength{\belowcaptionskip}{0em}
     \setlength{\abovecaptionskip}{0em}
 }
+% \AtBeginEnvironment{minted}{}
+% \AfterEndEnvironment{minted}{}
+% \AtEndEnvironment{minted}{}
 
-\newcommand{\prijevod}[2]{
-    \iflanguage{croatian}{#1}{
-    \iflanguage{english}{#2}{}}
-}
 
+\newcommand{\prijevod}[2]{%
+    \iflanguage{croatian}{#1}{%
+    \iflanguage{english}{#2}{}}%
+}%
+
+% prijevod opisa isječka koda
 \renewcommand{\lstlistingname}{\prijevod{Isječak koda}{Listing}}
 
+% Promjena iz Times u Sans font
 \renewcommand{\rmdefault}{\sfdefault}
 
+% Podešavanje broja stranice u donji desni kut
 \pagestyle{fancy} 
 \fancyhf{}
 \fancyfoot[R]{\thepage}
-\fancypagestyle{plain}{
-    \renewcommand{\headrulewidth}{0pt}
-    \fancyhf{}
-    \fancyfoot[R]{\thepage}
+\fancypagestyle{plain}{%
+    \renewcommand{\headrulewidth}{0pt}%
+    \fancyhf{}%
+    \fancyfoot[R]{\thepage}%
 }
 
 
-\linespread{1.2}
-\setlength{\parindent}{1.25cm}
-\setlength{\parskip}{6pt}
-\emergencystretch=1em
+% Redefiniranje datuma
+% \def\date#1{\gdef\@date{#1}}
 
+% 1.5 prored (1.2 je faktor za množenje)
+\linespread{1.2}
+% Veličina indenta na svakom paragrafu
+\setlength{\parindent}{1.25cm}
+% Veličina praznog prostora nakon svakog paragrafa
+\setlength{\parskip}{6pt}
+
+% Podešavanje oznaka kod listi (1. razina je crtica, 2. puni krug)
 \renewcommand{\labelitemi}{\textbullet}
 \renewcommand{\labelitemii}{\textendash}
 \setlist{leftmargin=2cm}
 
+% Slike numeriramo kroz cijeli dokument
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
 \counterwithout{listing}{chapter}
+% \AtBeginDocument{\renewcommand{\thelstlisting}{\arabic{lstlisting}}}
 
-\renewcommand*{\@seccntformat}[1]{
+% http://www.tex.ac.uk/cgi-bin/texfaq2html?label=seccntfmt
+% dodaje tocku nakon section broja ali ne i nakon chapter!
+% za chapter se koristi jednostavno http://theoval.cmp.uea.ac.uk/~nlct/latex/thesis/node10.html
+\renewcommand*{\@seccntformat}[1]{%
   \csname the#1\endcsname
   \csname adddot@#1\endcsname.\quad
 }
+% Postavka točkica u sadržaju
 \renewcommand*\l@chapter[2]{\textbf{\@dottedtocline{1}{0em}{2.3em}{#1}{#2}}}
 
+%Dodane točke nakon brojeva u TOC
 \let \savenumberline \numberline
 \def \numberline#1{\savenumberline{#1.}}
 
-\renewcommand\tableofcontents{
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{3}
+% Redefinicija sadržaja
+\let \originaltoc \tableofcontents
+\renewcommand\tableofcontents{%
+%\setcounter{page}{2}
+\setcounter{secnumdepth}{3} % dubina do subsubsekcije
+\setcounter{tocdepth}{3} % dubina do subsubsekcije
 \chapter*{ \vspace{-7.5mm}\sffamily\fontsize{18pt}{0pt}\bfseries{\prijevod{Sadr\v zaj}{Table of Contents}}
 \vspace{-10pt}
-  \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}
+  \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
 \begin{spacing}{0.6}
-\@starttoc{toc}
+\@starttoc{toc}%
 \end{spacing}
 }
 
@@ -164,9 +190,9 @@ unicode
 
 \newcommand{\mentorr}[1]
 {
-  \ifthenelse{\equal{#1}{M}}{\!\!\!\!Mentor}{}
-  \ifthenelse{\equal{#1}{Z}}{\!\!\!\!\!\prijevod{Mentorica}{Mentor}}{}
-  \ifthenelse{\equal{#1}{O}}{\!\!\!\!\!\!\!Mentor/Mentorica}{}
+  \ifthenelse{\equal{#1}{M}}{\!\!\!\!Mentor}{}%
+  \ifthenelse{\equal{#1}{Z}}{\!\!\!\!\!\prijevod{Mentorica}{Mentor}}{}%
+  \ifthenelse{\equal{#1}{O}}{\!\!\!\!\!\!\!Mentor/Mentorica}{}%
 }
 
 \newcommand{\potvrdio}[1]
@@ -176,13 +202,15 @@ unicode
   \ifthenelse{\equal{#1}{O}}{potvrdio/potvrdila\!}{}
 }
 
+% Podešavanje poglavlja tako da se ne ispisuje "Poglavlje <broj>"
 \newboolean{prvi}
 \setboolean{prvi}{false}
 \newboolean{drugi}
 \setboolean{drugi}{false}
-\renewcommand{\@makechapterhead}[1]{
+\renewcommand{\@makechapterhead}[1]{%
 
-\ifthenelse{\boolean{prvi}}{
+%%
+\ifthenelse{\boolean{prvi}}{%
 	{\setlength{\parskip}{0em} \parindent \z@ \raggedright \normalfont
 		\interlinepenalty\@M
 		\ifnum \c@secnumdepth >\m@ne
@@ -192,7 +220,8 @@ unicode
 		\vskip 15\p@
 	}
 }
-
+%%
+%%
 {
 \ifthenelse{\boolean{drugi}}
 
@@ -214,9 +243,10 @@ unicode
 		\vskip 15\p@
 	}
 }
-
+%%
 }
 
+% Oblici za podnaslove
 \titleformat{\section}
   {\normalfont\fontsize{16pt}{16pt}\sffamily\bfseries}{\thesection.}{1em}{}
 \titleformat{\subsection}
@@ -224,6 +254,7 @@ unicode
 \titleformat{\subsubsection}
   {\normalfont\fontsize{12pt}{12pt}\sffamily\bfseries}{\thesubsubsection.}{1em}{}
 
+% Definicija varijabilnih vrijednosti
 \def\vrstaRada#1{\gdef\@vrstaRada{\uppercase{#1}}}
 \def\title#1{\gdef\@title{\uppercase{#1}}}
 \def\predmet#1{\gdef\@predmet{\uppercase{#1}}}
@@ -248,10 +279,12 @@ unicode
 \def\predmetVAS{\prijevod{Vi\v{s}eagentni sustavi}{Multiagent Systems}}
 \def\predmetDP{\prijevod{Deklarativno programiranje}{Declarative Programming}}
 \def\predmetUUI{\prijevod{Uvod u umjetnu inteligenciju}{Introduction to Artificial Intelligence}}
+\def\predmetUUI{\prijevod{Uvod u umjetnu inteligenciju}{Introduction to Artificial Intelligence}}
 \def\predmetBP{\prijevod{Baze podataka 1}{Databases 1}}
 
-\renewcommand\maketitle{
-
+% Naslovne stranice
+\renewcommand\maketitle{%
+%
     \thispagestyle{empty}
     \begin{center}
       {\large \fontsize{14}{17}\selectfont\bfseries{\prijevod{SVEU\v{C}ILI\v{S}TE U ZAGREBU}{UNIVERSITY OF ZAGREB}}} \\[8pt]
@@ -269,6 +302,7 @@ unicode
     { \linespread{2.5}\sffamily\bfseries{\fontsize{22}{27}\selectfont\MakeUppercase\@title}\par}\ \\[10mm]
     {\normalfont \large \bfseries{\fontsize{14}{17}\selectfont\MakeUppercase\@vrstaRada}}\ \\[5mm]
     { \linespread{2.5}\sffamily\bfseries{\fontsize{22}{27}\selectfont\MakeUppercase\@predmet}\par}
+    % {\normalfont \large \bfseries{\fontsize{14}{17}\selectfont\MakeUppercase\@predmet}}
     \end{center}
     
     \vfill
@@ -301,16 +335,16 @@ unicode
     \vskip 20mm
     \begin{flushleft}
     \hspace{90mm}
-    \iflanguage{croatian}{
-        {\bfseries{\mentorr{\@spolMentora}}:}\\[15pt]
-    }{
-        \iflanguage{english}{
+    \iflanguage{croatian}{%
+        {\bfseries{\mentorr{\@spolMentora}}:}\\[15pt]%
+    }{%
+        \iflanguage{english}{%
             Mentor:\\[15pt]
         }{}
     }
-    \hspace{90mm}
+    \hspace{90mm}%
     {\normalfont {\@titulaProfesora}}
-    {\normalfont {\@mentor}}
+    {\normalfont {\@mentor}}%
     \prijevod{}{, PhD}
     \end{flushleft}
     
@@ -369,36 +403,52 @@ unicode
 \newif\iflistings
 
 \makeatletter
-\AtEndDocument {
+\AtEndDocument {%
     \if@filesw
-       \ifnum\value{figure}=\z@
-          \immediate\write\@mainaux {\global\string\figuresfalse}
+       \ifnum\value{figure}=\z@ % no figures
+          \immediate\write\@mainaux {\global\string\figuresfalse}%
        \else
-          \immediate\write\@mainaux {\global\string\figurestrue}
+          \immediate\write\@mainaux {\global\string\figurestrue}%
        \fi
-       \ifnum\value{table}=\z@
-          \immediate\write\@mainaux {\global\string\tablesfalse}
+       \ifnum\value{table}=\z@ % no tables
+          \immediate\write\@mainaux {\global\string\tablesfalse}%
        \else
-          \immediate\write\@mainaux {\global\string\tablestrue}
+          \immediate\write\@mainaux {\global\string\tablestrue}%
        \fi
-       \ifnum\value{listing}=\z@
-          \immediate\write\@mainaux {\global\string\listingsfalse}
+       \ifnum\value{listing}=\z@ % no listings
+          \immediate\write\@mainaux {\global\string\listingsfalse}%
        \else
-          \immediate\write\@mainaux {\global\string\listingstrue}
+          \immediate\write\@mainaux {\global\string\listingstrue}%
        \fi
     \fi
 }
 \makeatother 
 
+% \newcommand{\makebackmatter}{
+%     \printbibliography[title=\prijevod{Popis literature}{Bibliography}]
+%     \addcontentsline{toc}{chapter}{\prijevod{Popis literature}{Bibliography}}
+
+%     \listoffigures
+%     \addcontentsline{toc}{chapter}{\prijevod{Popis slika}{List of Figures}}
+    
+%     \listoftables
+%     \addcontentsline{toc}{chapter}{\prijevod{Popis tablica}{List of Tables}}
+    
+%     \listoflistings
+%     \addcontentsline{toc}{chapter}{\prijevod{Popis isječaka koda}{List of Listings}}
+% }
+
 \newcommand{\makebackmatter}{
     \printbibliography[title=\prijevod{Popis literature}{Bibliography}]
     \addcontentsline{toc}{chapter}{\prijevod{Popis literature}{Bibliography}}
-
+    
+    % 
     \iffigures
        \listoffigures
        \addcontentsline{toc}{chapter}{\prijevod{Popis slika}{List of Figures}}
     \fi
-
+    
+    % 
     \iftables
        \listoftables
        \addcontentsline{toc}{chapter}{\prijevod{Popis tablica}{List of Tables}}
@@ -406,6 +456,9 @@ unicode
 
     
     \iflistings
+        % \renewcommand{\tableofcontents}{\originaltoc}
+        % \def\@dotsep{4.5}
+        % \renewcommand{\lstlistlistingname}
         \listoflistings
         \addcontentsline{toc}{chapter}{\prijevod{Popis isječaka koda}{List of Listings}}
         \sectionmark{\prijevod{Popis isječaka koda}{List of Listings}}
