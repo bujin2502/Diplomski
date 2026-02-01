@@ -281,95 +281,103 @@ Različiti parametri kontroliraju kako model bira sljedeći token iz ove raspodj
 Kombinacija ovih parametara omogućuje fino podešavanje ponašanja modela prema specifičnim potrebama primjene. Za zadatke koji zahtijevaju preciznost i dosljednost, poput generiranja programskog koda ili formalnih dokumenata, koriste se niže vrijednosti temperature i konzervativnije strategije uzorkovanja. S druge strane, za kreativne zadatke poput pisanja priča ili generiranja ideja, preporučuju se više vrijednosti temperature i fleksibilnije strategije uzorkovanja koje potiču raznolikost u generiranom sadržaju.
 
 \section{Prilagodba ponašanja bez treniranja: prompt engineering i \emph{in-context} učenje}
-\label{sec:prompting-icl}
+
+Tradicionalni pristup prilagodbi jezika modela za specifične zadatke ili domene zahtijeva postupak finog podešavanja (\emph{fine-tuning}), pri čemu se parametri prethodno treniranog modela ažuriraju korištenjem zadataka specifičnih podataka. Iako ovaj pristup omogućava značajno poboljšanje performansi za ciljane aplikacije, proces je računski skup i zahtijeva pristup kvalitetnim označenim podacima za svaki novi zadatak. Dodatno, fino podešavanje može dovesti do katastrofičnog zaboravljanja (\emph{catastrophic forgetting}), gdje model gubi znanje stečeno tijekom inicijalnog treniranja \cite{zhou2023comprehensive}. Ova ograničenja motivirala su razvoj alternativnih pristupa koji omogućavaju prilagodbu ponašanja modela bez potrebe za izmjenom njegovih parametara.
+
+Veliki jezični modeli pokazuju izvanrednu sposobnost adaptacije putem promjena u načinu postavljanja upita, odnosno kroz tehniku koja se naziva prompting ili prompt engineering. Kao što je prikazano na Slici \ref{fig:AI_dijagram_toka}, prompting predstavlja metodu postavljanja upita treniranim LLM-ovima koja omogućava prilagodbu modela bez finog podešavanja parametara. Ova neočekivana sposobnost velikih jezičnih modela omogućava korisnicima da usmjeravaju ponašanje modela isključivo kroz pažljivo oblikovane tekstualne upute i primjere unutar samog upita. Dva ključna pristupa prilagodbi bez treniranja su prompt engineering, koji se fokusira na strukturiranje i formuliranje upita, te \emph{in-context} učenje, pri čemu model uči iz demonstracija prisutnih u promptu \cite{brown2020language, zhou2023comprehensive}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{slike/prompt.png}
+    \caption{Dijagram toka različitih faza razvoja LLM-a od pred-treniranja do korištenja. RL označava reinforcement learning, RM reward modeling, a RLHF reinforcement learning with human feedback \cite{naveed2025comprehensive}}
+    \label{fig:AI_dijagram_toka}
+\end{figure}
+
+
 \subsection{Prompt engineering}
-\label{subsec:prompt-engineering}
-\begin{itemize}
-  \item Prompt engineering predstavlja oblikovanje uputa modelu (npr. zadavanje uloge, očekivanog formata izlaza i pravila) radi konzistentnijih rezultata.
-\end{itemize}
+
+Prompt engineering predstavlja disciplinu oblikovanja uputa za velike jezične modele s ciljem postizanja konzistentnijih i kvalitetnijih rezultata. Ovaj pristup omogućava prilagodbu ponašanja modela bez potrebe za dodatnim treniranjem ili izmjenom parametara. Prompt može sadržavati različite elemente poput definiranja uloge modela, specificiranja željenog formata izlaza, postavljanja pravila ponašanja ili davanja kontekstualnih informacija \cite{saravia2022prompt}.
+
+Istraživanja pokazuju kako kvaliteta prompta značajno utječe na performanse modela. Dobro strukturiran prompt uključuje jasne i detaljne upute, može sadržavati pozitivne i negativne primjere željenog ponašanja te specificirati očekivanu duljinu ili format odgovora. Dodatno, prompting može uključivati tehnike poput poticanja korak-po-korak rasuđivanja, gdje se model navodi da eksplicitno prikaže svoj proces razmišljanja prije davanja konačnog odgovora \cite{zhou2023comprehensive}.
+
+Prompt engineering postaje posebno važan u kontekstu zero-shot učenja, gdje model treba odgovoriti na zadatak koji nije vidio tijekom treniranja. Veliki jezični modeli pokazuju sposobnost zero-shot učenja, što znači da mogu odgovarati na upite bez ikakvog prethodnog primjera u promptu. Ova sposobnost omogućava modelima generalizaciju na nove zadatke isključivo na temelju jasno formuliranih uputa \cite{zhou2023comprehensive}.
 
 \subsection{Sistemski i korisnički prompt}
-\label{subsec:sistemski-korisnicki}
-\begin{itemize}
-  \item Sistemski prompt definira opće ponašanje modela u interakciji.
-  \item Korisnički prompt predstavlja konkretan zahtjev u određenom trenutku.
-\end{itemize}
+
+Moderni sustavi velikih jezičnih modela koriste distinkciju između sistemskog i korisničkog prompta kako bi omogućili fleksibilnije i kontroliranije interakcije. Sistemski prompt definira opće ponašanje modela kroz cijelu interakciju i postavlja osnovne smjernice za način rada. Ovaj prompt obično ostaje konstantan tijekom sesije i određuje kontekst u kojem model interpretira korisničke zahtjeve. Sistemski prompt može uključivati informacije o ulozi modela, stilskim preferencijama, ograničenjima u ponašanju ili specifičnim domenskim znanjima \cite{ouyang2022training}.
+
+Korisnički prompt, s druge strane, predstavlja konkretan zahtjev ili upit koji korisnik postavlja u određenom trenutku. Ovaj prompt je dinamičan i mijenja se s svakim zahtjevom korisnika. Model kombinira informacije iz sistemskog i korisničkog prompta kako bi generirao odgovarajući odgovor. Ova arhitektura omogućava održavanje konzistentnog ponašanja modela (kroz sistemski prompt) dok istovremino omogućava fleksibilnost u odgovaranju na raznolike korisničke upite \cite{zhou2023comprehensive}.
+
+Važnost ove distinkcije posebno dolazi do izražaja u aplikacijama gdje je potrebno održavanje određenog stila komunikacije ili poštivanje specifičnih ograničenja kroz cijelu konverzaciju. Na primjer, sistemski prompt može definirati da model uvijek daje odgovore u određenom profesionalnom tonu ili da izbjegava određene teme, dok korisnički promptovi postavljaju konkretna pitanja unutar tog okvira.
 
 \subsection{\emph{In-context} learning}
-\label{subsec:icl}
-\begin{itemize}
-  \item \emph{In-context} učenje postiže se davanjem primjera unutar prompta, čime se model privremeno usmjerava bez trajne promjene parametara.
-\end{itemize}
+
+\emph{In-context} learning ili učenje u kontekstu predstavlja ključnu sposobnost velikih jezičnih modela koja im omogućava prilagodbu novim zadacima bez izmjene parametara modela. Ovaj fenomen se manifestira kroz sposobnost modela da uči iz primjera koji su dani unutar samog prompta. Kada se modelu pruži nekoliko primjera ulazno-izlaznih parova za određeni zadatak, model može generalizirati taj obrazac i primijeniti ga na nove ulaze \cite{brown2020language}.
+
+Few-shot learning, kao specifičan oblik \emph{in-context} učenja, pokazuje se posebno efektivnim. Istraživanja na GPT-3 modelu pokazala su kako performanse modela u few-shot scenariju premašuju performanse u zero-shot scenariju, što sugerira da veliki jezični modeli funkcioniraju kao meta-učenici (\emph{meta-learners}) - modeli koji uče kako učiti iz malog broja primjera \cite{brown2020language}. Broj primjera koji se daju modelu može varirati, ali čak i jedan ili dva dobro odabrana primjera mogu značajno poboljšati performanse na novom zadatku.
+
+Format \emph{in-context} učenja tipično uključuje strukturirane demonstracije gdje se svakom primjeru prilaže ulaz i očekivani izlaz. Model zatim koristi ove demonstracije kao reference za generiranje odgovora na novi upit. Važno je napomenuti da kvaliteta i relevantnost odabranih primjera značajno utječu na performanse modela. Istraživanja pokazuju da primjeri trebaju biti što sličniji ciljanom zadatku te da redoslijed primjera također može utjecati na rezultate \cite{zhou2023comprehensive}.
+
+Ova tehnika omogućava privremeno usmjeravanje modela bez potrebe za skupim postupkom fine-tuninga. Parametri modela ostaju nepromijenjeni, a prilagodba se postiže isključivo kroz sadržaj prompta. To čini \emph{in-context} učenje izuzetno praktičnim pristupom za brzu prilagodbu modela različitim domenama i zadacima, posebno u scenarijima gdje je dostupno samo nekoliko primjera ili gdje je potrebna česta promjena zadataka \cite{zhou2023comprehensive}.
+
+Međutim, važno je napomenuti kako \emph{in-context} učenje ima svoja ograničenja. Svi primjeri moraju stati u kontekstni prozor modela, što ograničava broj demonstracija koje se mogu pružiti. Dodatno, performanse ovog pristupa ovise o veličini modela - veći modeli pokazuju značajno bolje sposobnosti \emph{in-context} učenja nego manji modeli \cite{brown2020language}.
 
 \section{Prilagodba modela treniranjem i optimizacije za primjenu}
-\label{sec:finetuning-optimizacije}
 \subsection{Fine-tuning i PEFT}
-\label{subsec:finetuning-peft}
 \begin{itemize}
   \item Fine-tuning podrazumijeva dodatno treniranje modela na ciljanim podacima radi stabilnijeg ponašanja u specifičnom zadatku ili domeni.
   \item PEFT (\emph{Parameter-Efficient Fine-Tuning}) pristupi mijenjaju manji dio parametara ili dodaju adaptere (npr. LoRA), čime se smanjuje računalni i memorijski trošak.
 \end{itemize}
 
 \subsection{Preference fine-tuning}
-\label{subsec:preference-finetuning}
 \begin{itemize}
   \item Preference fine-tuning temelji se na ocjenama korisnika/annotatora, pri čemu model uči preferirati odgovore koji se smatraju korisnijima, sigurnijima i prikladnijima.
 \end{itemize}
 
 \subsection{Kvantizacija i destilacija}
-\label{subsec:kvantizacija-destilacija}
 \begin{itemize}
   \item Kvantizacija smanjuje preciznost zapisa parametara (manje bitova), što rezultira manjim modelom i bržim izvođenjem.
   \item Destilacija trenira manji (\emph{student}) model da imitira veći (\emph{teacher}) model uz cilj smanjenja resursnih zahtjeva uz zadržavanje performansi.
 \end{itemize}
 
 \section{RAG: povezivanje modela s vanjskim znanjem}
-\label{sec:rag}
 \subsection{Osnovna ideja RAG-a}
-\label{subsec:rag-ideja}
 \begin{itemize}
   \item Retrieval-Augmented Generation (RAG) kombinira dohvat relevantnih dokumenata iz baze znanja i generiranje odgovora na temelju dohvaćenog sadržaja.
   \item Cilj je povećati aktualnost i pouzdanost odgovora te smanjiti oslanjanje na implicitno znanje iz treniranja.
 \end{itemize}
 
 \subsection{Embeddings i vektorske baze podataka}
-\label{subsec:embeddings-vektorske-baze}
 \begin{itemize}
   \item \emph{Embeddings} preslikavaju tekst u vektore tako da semantički slični izrazi budu blizu u vektorskom prostoru.
   \item Vektorske baze omogućuju efikasno pretraživanje najsličnijih vektora upitu, tj. semantički dohvat.
 \end{itemize}
 
 \subsection{\emph{Chunking}}
-\label{subsec:chunking}
 \begin{itemize}
   \item \emph{Chunking} dijeli dokumente na manje cjeline radi lakšeg pretraživanja i zbog ograničenja konteksta modela.
   \item Odabir veličine i strategije segmentacije utječe na kvalitetu dohvaćenih informacija i konačni odgovor.
 \end{itemize}
 
 \section{Agenti i alati}
-\label{sec:agenti-alati}
 \begin{itemize}
   \item Agent predstavlja pristup u kojem sustav planira korake i izvršava radnje prema cilju (npr. višekorakno rješavanje zadatka).
   \item Integracija alata omogućuje modelu izvođenje stvarnih radnji (npr. dohvat podataka, poziv API-ja), a ne samo generiranje teksta.
 \end{itemize}
 
 \section{Evaluacija i operativni aspekti (inferenca, latencija, metrike)}
-\label{sec:evaluacija-operativa}
 \subsection{Inferenca: online i batch}
-\label{subsec:inferenca}
 \begin{itemize}
   \item Online inferenca isporučuje odgovore u stvarnom vremenu.
   \item Batch inferenca obrađuje veći broj zahtjeva izvan realnog vremena (npr. periodički poslovi).
 \end{itemize}
 
 \subsection{Latencija}
-\label{subsec:latencija}
 \begin{itemize}
   \item Latencija je vrijeme do prvog korisnog izlaza i predstavlja kritičan faktor korisničkog iskustva u interaktivnim sustavima.
 \end{itemize}
 
 \subsection{Benchmarkovi i metrike}
-\label{subsec:benchmarkovi-metrike}
 \begin{itemize}
   \item Benchmarkovi služe za usporedbu modela na standardiziranim zadacima (npr. razumijevanje teksta, matematika, kodiranje).
   \item Primjeri metrika:
@@ -382,13 +390,11 @@ Kombinacija ovih parametara omogućuje fino podešavanje ponašanja modela prema
 \end{itemize}
 
 \section{(Opcionalno) Model Context Protocol (MCP)}
-\label{sec:mcp}
 \begin{itemize}
   \item MCP predstavlja standardizirani način povezivanja modela, aplikacija i alata kroz jedinstveno sučelje, s ciljem smanjenja potrebe za prilagođenim integracijama.
 \end{itemize}
 
 \section{Zaključak poglavlja}
-\label{sec:zakljucak-ai-inzenjerstvo}
 \begin{itemize}
   \item U poglavlju su objašnjeni temeljni pojmovi AI inženjerstva, od arhitekture i rada LLM-ova do metoda prilagodbe, RAG pristupa, agentnih sustava te evaluacije i operativnih metrika.
   \item Navedeni koncepti čine osnovu za izgradnju pouzdanih i učinkovitih AI aplikacija te predstavljaju teorijski temelj za daljnje dijelove rada.
