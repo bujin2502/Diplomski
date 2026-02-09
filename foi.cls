@@ -12,9 +12,6 @@
 \RequirePackage[a4paper, left=2.5cm, right=2.5cm, bottom=2.5cm, top=2.5cm]{geometry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[\jezik]{babel}
-\RequirePackage{csquotes}
-\renewcommand*{\mkcitation}[1]{~#1}
-\renewcommand\mkblockquote[4]{\enquote{#1#2#3}#4}
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage{anyfontsize}
@@ -34,6 +31,9 @@
 \RequirePackage{courier} % za programski kod
 \RequirePackage[backend=biber, style=ieee, date=terse, isbn=true, url=false]{biblatex} % IEEE stil citiranja
 \addbibresource{lib.bib}
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+\setcounter{biburllcpenalty}{9000}
 
 \usepackage[printonlyused]{acronym}
 
@@ -82,6 +82,9 @@ unicode
 }
 
 \usepackage[newfloat=true]{minted}
+\RequirePackage{csquotes}
+\renewcommand*{\mkcitation}[1]{~#1}
+\renewcommand\mkblockquote[4]{\enquote{#1#2#3}#4}
 \setminted{
     autogobble,
     breaklines,
