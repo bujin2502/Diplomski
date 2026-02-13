@@ -27,7 +27,7 @@
 
 \sazetak{Opsega od 100 do 300 riječi. Sažetak upućuje na temu rada, ukratko se iznosi čime se rad bavi, teorijsko-metodološka polazišta, glavne teze i smjer rada te zaključci.}
 
-\kljucneRijeci{riječ; riječ; ...riječ; Obuhvaća $7\pm2$ ključna pojma koji su glavni predmet rasprave u radu.}
+\kljucneRijeci{riječ; riječ; riječ; Obuhvaća $7\pm2$ ključna pojma koji su glavni predmet rasprave u radu.}
 
 \begin{document}
 
@@ -178,12 +178,11 @@ Na Slici \ref{fig:AI_history} se može vidjeti vremenski slijed pojavljivanja po
     \label{fig:AI_history}
 \end{figure}
 
-\subsection{Veliki jezični modeli i generativni chatboti (ChatGPT, Bard ...)}
+\subsection{Veliki jezični modeli i generativni chatboti (ChatGPT, Bard \dots)}
 
 Veliki jezični modeli (LLM) predstavljaju vrhunac generativne umjetne inteligencije, koristeći milijarde parametara za predviđanje i generiranje teksta koji je često nerazlučiv od ljudskog. Sustavi poput ChatGPT-a ili Barda (sada Gemini) ne oslanjaju se na unaprijed definirane odgovore, već sintetiziraju nove rečenice u stvarnom vremenu, prilagođavajući se tonu i specifičnim zahtjevima korisnika kroz višestruke krugove dijaloga~\cite{toosi2021brief}.
 
 Iako ovi modeli pokazuju impresivne sposobnosti u rješavanju problema, kreativnom pisanju i programiranju, oni se i dalje suočavaju s izazovima poput ``halucinacija'' ili generiranja netočnih informacija. Unatoč tome, njihova integracija u svakodnevne alate i sposobnost učenja iz povratnih informacija korisnika čine ih najnaprednijim oblikom interakcije čovjeka i stroja do danas~\cite{toosi2021brief}.
-
 
 \chapter{AI inženjerstvo - koncepti i ključne tehnike}
 
@@ -240,6 +239,8 @@ Prije pojave Transformera, rekurentne neuronske mreže poput LSTM i GRU bile su 
 Transformer se sastoji od dva glavna dijela: kodera (\emph{encoder}) koji obrađuje ulazni tekst i dekodera (\emph{decoder}) koji generira izlazni tekst. Koder pretvara ulaznu sekvencu u numeričke reprezentacije koje dekoder koristi za generiranje izlaza, element po element. Model je autoregresivan -- pri generiranju svakog novog elementa koristi sve prethodno generirane elemente kao kontekst~\cite{vaswani2017attention}.
 
 Ključna prednost ove arhitekture je sposobnost da istovremeno ``vidi'' sve dijelove ulazne sekvence, neovisno o njihovoj međusobnoj udaljenosti. Ovo omogućuje učinkovito hvatanje dugodosežnih ovisnosti u tekstu, što je kod rekurentnih mreža predstavljalo značajan izazov~\cite{vaswani2017attention}. Također, budući da se sve pozicije mogu obraditi paralelno, Transformer omogućuje znatno brže treniranje na modernim GPU jedinicama~\cite{vaswani2017attention}.
+
+\subsection{Enkoder i Dekoder}
 
 \subsection{\emph{Attention} mehanizam}
 
@@ -363,29 +364,34 @@ Destilacija znanja (\emph{knowledge distillation}) predstavlja komplementarni pr
 Kombinacija kvantizacije i destilacije omogućuje razvoj izuzetno učinkovitih modela pogodnih za implementaciju u okruženjima s ograničenim resursima, poput mobilnih uređaja ili \emph{edge computing} sustava. \emph{Student} model može se dodatno kvantizirati nakon destilacije, postižući kumulativni učinak obje tehnike. Ovakvi komprimirani modeli omogućuju demokratizaciju AI tehnologije, čineći napredne jezične sposobnosti dostupnima na širem spektru uređaja i aplikacija. Iako komprimirani modeli tipično pokazuju određeno smanjenje performansi u odnosu na originalne velike modele, pažljivom primjenom ovih tehnika moguće je zadržati prihvatljivu kvalitetu uz drastično smanjenje računalnih zahtjeva, što je ključno za praktičnu primjenu LLM-ova u stvarnom svijetu~\cite{naveed2025comprehensive}.
 
 \section{RAG: povezivanje modela s vanjskim znanjem}
+
+Veliki jezični modeli, unatoč svojoj sposobnosti generiranja teksta sličnog ljudskom i interpretiranja kompleksnih jezičnih nijansi, ograničeni su statičnim znanjem koje su stekli tijekom predtreniranja. Ovo ograničenje može dovesti do netočnosti, posebno u područjima koja se brzo razvijaju. Često to uključuje generiranje odgovora koji zvuče uvjerljivo, ali činjenično su netočni. Ta pojava je poznata kao halucinacija. Model se oslanja isključivo na znanje pohranjeno u parametre tijekom treniranja, što znači da ne može pristupiti informacijama koje su se pojavile nakon završetka treniranja ili koje nisu bile dio podataka za treniranje. \emph{Retrieval-Augmented Generation} (RAG) pristup rješava ova ograničenja integrirajući generativne sposobnosti velikih jezičnih modela s preciznošću dohvaćanja informacija u stvarnom vremenu, čime se omogućuje da modeli utemeljuju svoje odgovore u dinamički ažuriranim i provjerljivim izvorima \cite{app14199103}.
+
 \subsection{Osnovna ideja RAG-a}
-\begin{itemize}
-  \item \emph{Retrieval-Augmented Generation} (RAG) kombinira dohvat relevantnih dokumenata iz baze znanja i generiranje odgovora na temelju dohvaćenog sadržaja.
-  \item Cilj je povećati aktualnost i pouzdanost odgovora te smanjiti oslanjanje na implicitno znanje iz treniranja.
-\end{itemize}
+
+\emph{Retrieval-Augmented Generation} (RAG) predstavlja okvir koji spaja mehanizme dohvaćanja dokumenata temeljene na pretraživanju s generativnim modelima kako bi se poboljšala kvaliteta generiranih rezultata. RAG sustav koristi informacije koje su dohvaćene iz vanjskih izvora znanja, najčešće baza podataka, kako bi nadopunio proces generiranja odgovora. Ovaj pristup kombinira snagu velikih jezičnih modela u generiranju teksta s preciznošću dohvaćanja informacija u stvarnom vremenu, čime se znatno povećava točnost i pouzdanost odgovora \cite{app14199103}.
+
+Tijekom faze dohvaćanja (\emph{retrieval}), sustav najprije konstruira upit na temelju korisničkog unosa koji je namijenjen jezičnom modelu. Ovaj upit se zatim koristi za pretraživanje najsličnijih ili najrelevantnijih dokumenata iz vanjskih izvora znanja. Mehanizam za dohvaćanje (\emph{retriever}) procjenjuje sličnost između korisničkog upita i vraćenih rezultata iz baze znanja kako bi odabrao najrelevantnije dokumente. Nakon što su najrelevantniji rezultati identificirani, proces \textcolor{red}{augmentacije} kombinira dohvaćene dokumente s izvornim korisničkim unosom kako bi se formirao konačni upit koji se prosljeđuje generativnom jezičnom modelu \cite{app14199103}.
+
+Veliki jezični modeli mogu imati ograničenu memoriju i zastarjele informacije, što dovodi do netočnih odgovora. Dohvaćanje relevantnih informacija iz vanjskog, ažuriranog skladišta omogućuje modelima da točno odgovaraju s referencama i koriste više informacija nego što je dostupno u njihovim parametrima. S \textcolor{red}{augmentacijom} dohvaćanja, manji modeli su pokazali izvedbu usporedivu s mnogo većim modelima - primjerice, model od 11 milijardi parametara može biti konkurentan modelu PaLM od 540 milijardi parametara, a model od 7,5 milijardi može dosegnuti izvedbu modela Gopher od 280 milijardi parametara \cite{naveed2025comprehensive}.
 
 \subsection{Embeddings i vektorske baze podataka}
-\begin{itemize}
-  \item \emph{Embeddings} preslikavaju tekst u vektore tako da semantički slični izrazi budu blizu u vektorskom prostoru.
-  \item Vektorske baze omogućuju efikasno pretraživanje najsličnijih vektora upitu, tj. semantički dohvat.
-\end{itemize}
+
+\emph{Embeddings} ili vektorske reprezentacije tekstualnih podataka predstavljaju temelj za semantičko pretraživanje u RAG sustavima. Mehanizmi za \textcolor{red}{gust} dohvat (\emph{dense retrievers}) koriste prethodno trenirane jezične modele kako bi transformirali i upite i dokumente u guste vektorske prikaze koji enkapsuliraju semantičko značenje teksta. Za razliku od \textcolor{red}{rijetkih metoda pretraživanja} (\emph{sparse retrievers}) poput BM25 i TF-IDF koje se temelje na usporedbi ključnih riječi, \textcolor{red}{guste} metode omogućuju identifikaciju kontekstualno relevantnih dokumenata čak i u odsustvu točnog podudaranja riječi \cite{app14199103}.
+
+Primjer \textcolor{red}{gustog mehanizma za dohvat} je \emph{Dense Passage Retriever} (DPR) koji koristi dvije neovisne, prethodno trenirane BERT mreže kao guste enkodere. Jedna mreža enkodira svaki ulazni upit u vektor realnih brojeva, dok druga enkodira svaki tekstualni odlomak u vektor istih dimenzija. Sličnost između upita i tekstualnog odlomka mjeri se unutarnjim produktom ovih vektora, a enkoderi se treniraju maksimiziranjem unutarnjih produkata između vektora upita i odgovarajućih relevantnih odlomaka. Ovakvi enkoderi pokazuju robusnu izvedbu kao prethodno trenirani mehanizmi za dohvaćanje i široko se koriste u različitim RAG modelima \cite{app14199103}.
+
+Vektorske baze podataka omogućuju efikasno semantičko pretraživanje pohranjivanjem i indeksiranjem vektorskih prikaza dokumenata. Kada korisnik postavi upit, sustav ga pretvara u vektorski oblik korištenjem istog modela za \emph{embedding} i zatim pretražuje vektorsku bazu kako bi pronašao vektore koji su najsličniji upitu u vektorskom prostoru. Vanjska memorija u RAG sustavima može biti održavana u različitim formatima kao što su dokumenti, vektori ili baze podataka, a neki sustavi održavaju \textcolor{red}{intermedijarne} memorijske reprezentacije kako bi zadržali informacije kroz više iteracija \cite{naveed2025comprehensive}.
 
 \subsection{\emph{Chunking}}
-\begin{itemize}
-  \item \emph{Chunking} dijeli dokumente na manje cjeline radi lakšeg pretraživanja i zbog ograničenja konteksta modela.
-  \item Odabir veličine i strategije segmentacije utječe na kvalitetu dohvaćenih informacija i konačni odgovor.
-\end{itemize}
 
-\section{Agenti i alati}
-\begin{itemize}
-  \item Agent predstavlja pristup u kojem sustav planira korake i izvršava radnje prema cilju (npr. višekorakno rješavanje zadatka).
-  \item Integracija alata omogućuje modelu izvođenje stvarnih radnji (npr. dohvat podataka, poziv API-ja), a ne samo generiranje teksta.
-\end{itemize}
+Granularnost dohvaćanja odnosi se na razinu detalja na kojoj se informacije dohvaćaju iz baze znanja i naknadno obrađuju od strane jezičnog modela. Segmentacija dokumenata ili \emph{chunking} predstavlja proces dijeljenja dokumenata na manje cjeline prije pohranjivanja u vektorsku bazu, a provodi se na različitim razinama - od finih prema grubim - uključujući razinu tokena, rečenice, odlomka (\emph{chunk/passage}) i cijelog dokumenta. Odabir odgovarajuće razine granularnosti ima direktan utjecaj na kvalitetu dohvaćenih informacija i konačni odgovor sustava \cite{app14199103}.
+
+Gruba granularnost dohvaćanja (npr. dohvaćanje cijelih dokumenata) može pružiti širi kontekst, ali istovremeno može uvesti suvišan sadržaj koji potencijalno ometa jezični model u \textcolor{red}{downstream} zadacima. S druge strane, fina granularnost dohvaćanja pruža preciznije informacije, ali može povećati složenost dohvaćanja i pohrane te ugroziti semantički integritet. Dohvaćanje na razini dokumenta funkcionira dobro kada zadatak zahtijeva sveobuhvatan kontekst, dok se dohvaćanje na razini odlomka (\emph{chunk-level} i \emph{passage-level}) fokusira na specifične odjeljke teksta, balansirajući kontekst s relevantnošću \cite{app14199103}.
+
+Odabir veličine i strategije segmentacije predstavlja važan dizajnerski izbor u RAG sustavima. Uspješni RAG modeli poput REALM, RAG i Atlas koriste pristup dohvaćanja na razini odlomka jer on pomaže u zadacima koji zahtijevaju specifične odgovore, pritom ne preopterećujući model sa suvišnim informacijama. Dohvaćanje na razini tokena, iako manje uobičajeno, može se koristiti za specijalizirane zadatke koji zahtijevaju točna podudaranja ili integraciju podataka izvan domene treniranja. Strategija segmentacije mora uzeti u obzir i ograničenja kontekstnog prozora modela - dijeljenje na manje cjeline omogućuje lakše pretraživanje i smanjuje rizik od prekoračenja maksimalne duljine ulaza \cite{app14199103}.
+
+\section{KAG}
 
 \section{Evaluacija i operativni aspekti (inferenca, latencija, metrike)}
 \subsection{Inferenca: \emph{online} i \emph{batch}}
@@ -415,8 +421,6 @@ Kombinacija kvantizacije i destilacije omogućuje razvoj izuzetno učinkovitih m
 \begin{itemize}
   \item MCP predstavlja standardizirani način povezivanja modela, aplikacija i alata kroz jedinstveno sučelje, s ciljem smanjenja potrebe za prilagođenim integracijama.
 \end{itemize}
-
-\chapter{Evaluacija Chatbotova i halucinacije}
 
 \chapter{Zaključak}
 
