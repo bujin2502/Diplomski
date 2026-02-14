@@ -240,7 +240,12 @@ Transformer se sastoji od dva glavna dijela: kodera (\emph{encoder}) koji obrađ
 
 Ključna prednost ove arhitekture je sposobnost da istovremeno ``vidi'' sve dijelove ulazne sekvence, neovisno o njihovoj međusobnoj udaljenosti. Ovo omogućuje učinkovito hvatanje dugodosežnih ovisnosti u tekstu, što je kod rekurentnih mreža predstavljalo značajan izazov~\cite{vaswani2017attention}. Također, budući da se sve pozicije mogu obraditi paralelno, Transformer omogućuje znatno brže treniranje na modernim GPU jedinicama~\cite{vaswani2017attention}.
 
-\subsection{Enkoder i Dekoder}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\linewidth]{slike/ModalNet-21.png}
+    \caption{Koder - dekoder~\cite{vaswani2017attention}}
+    \label{fig:koder-dekoder}
+\end{figure}
 
 \subsection{\emph{Attention} mehanizam}
 
