@@ -398,7 +398,9 @@ Odabir veličine i strategije segmentacije predstavlja važan dizajnerski izbor 
 
 \section{KAG}
 
-\section{Evaluacija i operativni aspekti (inferenca, latencija, metrike)}
+\chapter{Evaluacija ChatBotova}
+
+\section{Evaluacija i operativni aspekti (inferenca, latencija)}
 \subsection{Inferenca: \emph{online} i \emph{batch}}
 \begin{itemize}
   \item \emph{Online} inferenca isporučuje odgovore u stvarnom vremenu.
@@ -410,7 +412,7 @@ Odabir veličine i strategije segmentacije predstavlja važan dizajnerski izbor 
   \item Latencija je vrijeme do prvog korisnog izlaza i predstavlja kritičan faktor korisničkog iskustva u interaktivnim sustavima.
 \end{itemize}
 
-\subsection{Benchmarkovi i metrike}
+\section{Benchmarkovi i metrike}
 \begin{itemize}
   \item Benchmarkovi služe za usporedbu modela na standardiziranim zadacima (npr. razumijevanje teksta, matematika, kodiranje).
   \item Primjeri metrika:
@@ -420,11 +422,15 @@ Odabir veličine i strategije segmentacije predstavlja važan dizajnerski izbor 
     \item \textbf{ROUGE} (naglasak na \emph{recall}, česta u sažimanju).
   \end{itemize}
   \item \textbf{LLM-as-Judge} koristi model za ocjenu izlaza drugog modela prema zadanim kriterijima (npr. praćenje uputa, jasnoća, relevantnost).
-\end{itemize}
 
-\section{(Opcionalno) Model Context Protocol (MCP)}
-\begin{itemize}
-  \item MCP predstavlja standardizirani način povezivanja modela, aplikacija i alata kroz jedinstveno sučelje, s ciljem smanjenja potrebe za prilagođenim integracijama.
+BLEU (Bilingual Evaluation Understudy): Ovo je leksička metrika koja mjeri n-gram preklapanje između generiranog odgovora i referentnog (očekivanog) odgovora. Praktično, broji koliko se uzastopnih riječi (n-grama) podudaraju. Što je veći BLEU rezultat, to je generirani odgovor sličniji referentnom u smislu točnih podudaranja riječi i fraza. Posebno je korisna za procjenu preciznosti (precision) generiranog teksta.
+
+ROUGE-L (Recall-Oriented Understudy for Gisting Evaluation - Longest Common Subsequence): ROUGE-L je također leksička metrika, ali se fokusira na najduži zajednički podniz (Longest Common Subsequence - LCS) između generiranog i referentnog odgovora. Za razliku od BLEU-a, ROUGE-L je orijentiraniji na opoziv (recall) i nastoji uhvatiti sličnost u sadržaju i strukturi rečenica, čak i ako redoslijed riječi nije identičan. Vraća F1 mjeru, koja je harmonijska sredina preciznosti i opoziva.
+
+BERTScore: Ovo je semantička metrika koja ide dalje od pukog preklapanja riječi. Koristi predtrenirane BERT modele (u ovom slučaju 'bert-base-multilingual-cased' koji podržava hrvatski) za generiranje kontekstualnih ugradnji (embeddings) za svaki token u generiranom i referentnom odgovoru. Zatim mjeri sličnost između ovih ugradnji, što znači da može uhvatiti semantičku sličnost čak i kada se koriste različite riječi. BERTScore je posebno dobar u procjeni koliko su odgovori značenjski slični, a ne samo leksički.
+
+Cosine Similarity (Kosinusna sličnost): Ova semantička metrika mjeri kosinus kuta između dva vektora (u ovom slučaju, vektora koji predstavljaju cijele generirane i referentne odgovore). Koristimo model intfloat/multilingual-e5-large za pretvaranje cijelih odgovora u vektore (tzv. embeddings). Što je kut manji, to je kosinusna sličnost bliža 1, što ukazuje na veću semantičku sličnost između dva odgovora. To je korisno za razumijevanje ukupne tematske i kontekstualne sličnosti.
+
 \end{itemize}
 
 \chapter{Zaključak}
